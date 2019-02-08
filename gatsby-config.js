@@ -5,7 +5,20 @@ module.exports = {
     author: `leopoldw`,
   },
   plugins: [
-    // `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-mdx`,
+    // {
+    //   resolve: `gatsby-mdx`,
+    //   options: {},
+    // },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/posts/`,
+        name: 'posts',
+      },
+    }
     // `gatsby-transformer-sharp`,
     // `gatsby-plugin-sharp`,
     // {
