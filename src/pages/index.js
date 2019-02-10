@@ -1,32 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-// import { MDXRenderer } from 'gatsby-mdx'
 
-const IndexPage = ({
-  data: { allMdx: { edges } },
-  ...props
-}) => (
+const IndexPage = () => (
   <>
-    {edges.map(({ node: post }) => (
-      <h1 key={post.key} c={console.log(props)}>{post.frontmatter.title}</h1>
-      // <MDXRenderer key={post.id}>{post.node.code.body}</MDXRenderer>
-    ))}
+    <h1>INDEX</h1>
   </>
 )
 
 export default IndexPage
-
-export const query = graphql`
-  query {
-    allMdx {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  }
-`

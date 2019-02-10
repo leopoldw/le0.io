@@ -175,7 +175,6 @@
         react/jsx-boolean-value: error
         react/jsx-closing-tag-location: error
         react/jsx-equals-spacing: error
-        react/jsx-handler-names: error
         react/jsx-first-prop-new-line: error
         react/jsx-indent-props:
           - error

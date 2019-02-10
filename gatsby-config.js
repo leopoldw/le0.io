@@ -1,3 +1,5 @@
+const mdxFeed = require(`gatsby-mdx/feed`)
+
 module.exports = {
   siteMetadata: {
     title: `Leopold W Site`,
@@ -7,20 +9,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
-    {
-      resolve: `gatsby-mdx`,
-      // options: {
-      //   defaultLayouts: {
-      //     default: require.resolve('./src/layouts/BlogLayout.js'),
-      //   }
-      // },
-    },
+    `gatsby-mdx`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/posts/`,
         name: `posts`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: mdxFeed,
     },
     // `gatsby-transformer-sharp`,
     // `gatsby-plugin-sharp`,
