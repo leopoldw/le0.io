@@ -39,10 +39,10 @@ module.exports = {
         name: `posts`,
       },
     },
-    {
-      resolve: `gatsby-plugin-feed`,
-      options: mdxFeed,
-    },
+    // {
+    //   resolve: `gatsby-plugin-feed`,
+    //   options: mdxFeed,
+    // },
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
