@@ -11,10 +11,20 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
-    `gatsby-mdx`,
     `gatsby-plugin-sitemap`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        // gatsbyRemarkPlugins: [{
+        //   resolve: `gatsby-remark-prismjs`,
+        //   options: {
+        //     showLineNumbers: true,
+        //   },
+        // }],
+      },
+    },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

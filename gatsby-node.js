@@ -18,15 +18,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   // add filename data to image nodes for querying
   if (node.internal.type === `ImageSharp`) {
-    const parentNode = getNode(node.parent)
-
+    const parent = getNode(node.parent)
     // for some reason, calling getNode will always make this value
     // a parentNode instead of a field from a parent node
     actions.createNodeField({
       node,
       name: `file`,
-      // not sure why this works, but ok...
-      value: `${parentNode.base}`,
+      value: `${parent.base}`,
     })
   }
 }
