@@ -1,4 +1,6 @@
 const mdxFeed = require(`gatsby-mdx/feed`)
+const path = require(`path`)
+const isDev = process.env.NODE_ENV === `development`
 
 module.exports = {
   siteMetadata: {
@@ -10,10 +12,20 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     `gatsby-mdx`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: !isDev,
+        stripMetadata: true,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/posts/`,
+        path: path.join(__dirname, `posts`),
         name: `posts`,
       },
     },
@@ -21,8 +33,6 @@ module.exports = {
       resolve: `gatsby-plugin-feed`,
       options: mdxFeed,
     },
-    // `gatsby-transformer-sharp`,
-    // `gatsby-plugin-sharp`,
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
@@ -35,8 +45,5 @@ module.exports = {
     //     icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
     //   },
     // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
   ],
 }

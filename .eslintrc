@@ -19,6 +19,7 @@
       exports: true
       __dirname: true
       module: true
+      process: true
     rules:
         # optimizations
         no-extra-bind: error
