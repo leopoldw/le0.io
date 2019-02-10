@@ -1,0 +1,6 @@
+{
+  "eslint.options": {
+    "configFile": ".eslintrc"
+  },
+  "eslint.nodePath": "./node_modules",
+}

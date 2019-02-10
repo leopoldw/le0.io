@@ -7,18 +7,21 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
-    `gatsby-mdx`,
-    // {
-    //   resolve: `gatsby-mdx`,
-    //   options: {},
-    // },
+    {
+      resolve: `gatsby-mdx`,
+      // options: {
+      //   defaultLayouts: {
+      //     default: require.resolve('./src/layouts/BlogLayout.js'),
+      //   }
+      // },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/posts/`,
-        name: 'posts',
+        name: `posts`,
       },
-    }
+    },
     // `gatsby-transformer-sharp`,
     // `gatsby-plugin-sharp`,
     // {

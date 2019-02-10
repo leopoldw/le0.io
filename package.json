@@ -9,6 +9,10 @@
     "@emotion/styled": "^10.0.7",
     "@mdx-js/mdx": "^0.16.8",
     "@mdx-js/tag": "^0.16.8",
+    "eslint": "^5.13.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "gatsby": "^2.0.117",
     "gatsby-image": "^2.0.29",
     "gatsby-mdx": "^0.3.5",
@@ -27,7 +31,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "rm -rf .cache && gatsby develop",
     "serve": "gatsby serve"
   },
   "repository": {
