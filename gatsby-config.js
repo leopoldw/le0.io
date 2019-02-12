@@ -12,6 +12,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     // `gatsby-plugin-sitemap`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-webpack-size`,
     `gatsby-plugin-resolve-src`,
     `gatsby-transformer-sharp`,
@@ -39,6 +40,12 @@ module.exports = {
       options: {
         path: path.join(__dirname, `posts`),
         name: `posts`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        // Accepts all options defined by `babel-plugin-emotion` plugin.
       },
     },
     // {
