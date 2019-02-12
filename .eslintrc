@@ -12,6 +12,10 @@
         browser: true
     settings:
         import/parser: babel-eslint
+        import/resolver:
+          node:
+            paths:
+              - ./src
         react:
           version: 16.3.1
     globals:

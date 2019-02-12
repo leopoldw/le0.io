@@ -12,6 +12,8 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
     // `gatsby-plugin-sitemap`,
+    `gatsby-plugin-webpack-size`,
+    `gatsby-plugin-resolve-src`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
     {
