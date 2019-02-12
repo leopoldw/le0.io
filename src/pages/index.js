@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { colors } from 'consts/design'
 import RootLayout from 'layouts/rootLayout'
+import MouseFollower from 'components/site/MouseFollower'
 
 const containerCSS = {
   width: `100%`,
@@ -14,6 +15,7 @@ const IndexPage = () => (
     <div css={containerCSS}>
       {/* gd */}
     </div>
+    <MouseFollower />
   </RootLayout>
 )
 
