@@ -6,6 +6,9 @@ import ReactHelmet from 'react-helmet'
 const rootCSS = {
   width: `100%`,
   height: `100%`,
+  fontFamily: `Open Sans`,
+  letterSpacing: `0.01em`,
+  fontWeight: `300`,
 }
 
 const globalCSS = {

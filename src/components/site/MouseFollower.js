@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import StatRenderer from './StatRenderer'
 
 const css = {
   position: `fixed`,
-  color: `white`,
-  opacity: `0.2`,
 }
 
 const OFFSET = 20
@@ -17,14 +16,18 @@ const MouseFollower = () => {
     })
 
     return () => {
-      document.removeEventListener(mouseMoveListener)
+      document.removeEventListener(`mousemove`, mouseMoveListener)
     }
   }, [])
 
   return (
     <div css={css} style={{ top: `${mousePosition.y}px`, left: `${mousePosition.x}px` }}>
-      <div>{`clientX: ${mousePosition.x}`}</div>
-      <div>{`clientY: ${mousePosition.y}`}</div>
+      <StatRenderer
+        stats={[
+          [`clientX`, mousePosition.x],
+          [`clientY`, mousePosition.y],
+        ]}
+      />
     </div>
   )
 }
