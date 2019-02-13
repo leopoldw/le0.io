@@ -1,23 +1,37 @@
 import React, { useState, useRef } from 'react'
 
+const containerCSS = {
+  position: `relative`,
+}
+
+const hoverCSS = {
+  backgroundColor: `white`,
+  opacity: 0.3,
+  width: `100%`,
+  height: `100%`,
+  position: `absolute`,
+  top: 0,
+  left: 0,
+}
+
 const dottedLineCSS = {
   position: `fixed`,
-  background: `red`,
-  opacity: 0.5,
 }
 
 const verticalCSS = {
   ...dottedLineCSS,
-  width: 1,
+  width: 0,
   height: `100vh`,
   top: 0,
+  borderLeft: `1px dotted white`,
 }
 
 const horizontalCSS = {
   ...dottedLineCSS,
-  height: 1,
+  height: 0,
   width: `100vw`,
   left: 0,
+  borderTop: `1px dotted white`,
 }
 
 const Guidelines = ({ children }) => {
@@ -34,6 +48,7 @@ const Guidelines = ({ children }) => {
       ref={containerRef}
       onMouseEnter={() => setHasHover(true)}
       onMouseLeave={() => setHasHover(false)}
+      css={containerCSS}
     >
       {hasHover && (
         <>
@@ -41,6 +56,7 @@ const Guidelines = ({ children }) => {
           <div css={verticalCSS} style={{ left: `${rect.x + rect.width}px` }} />
           <div css={horizontalCSS} style={{ top: `${rect.y}px` }} />
           <div css={horizontalCSS} style={{ top: `${rect.y + rect.height}px` }} />
+          <div css={hoverCSS} />
         </>
       )}
 
