@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { colors } from 'consts/design'
 import RootLayout from 'layouts/rootLayout'
 import MouseFollower from 'components/site/MouseFollower'
+import Guidelines from 'components/site/Guidelines'
 import Stats from 'components/site/Stats'
 
 const containerCSS = {
@@ -29,7 +30,9 @@ const IndexPage = () => (
     <div css={containerCSS}>
       <div>
         <div css={headerPositionCSS}>
-          <h1 css={headerCSS}>Leopold Wicht</h1>
+          <Guidelines>
+            <h1 css={headerCSS}>Leopold Wicht</h1>
+          </Guidelines>
         </div>
         <Stats />
       </div>
