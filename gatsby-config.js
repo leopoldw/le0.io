@@ -48,17 +48,6 @@ module.exports = {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
       },
     },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Open Sans`,
-            variants: [`300`],
-          },
-        ],
-      },
-    },
     // {
     //   resolve: `gatsby-plugin-feed`,
     //   options: mdxFeed,

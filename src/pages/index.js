@@ -8,13 +8,31 @@ import Stats from 'components/site/Stats'
 const containerCSS = {
   width: `100%`,
   height: `100%`,
-  background: `linear-gradient(45deg, ${colors.eggplant}, ${colors.sky})`,
+  background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.mediumBlue})`,
+  position: `relative`,
+}
+
+const headerPositionCSS = {
+  position: `absolute`,
+  top: `50%`,
+  left: `10%`,
+}
+
+const headerCSS = {
+  color: colors.yellow,
+  fontFamily: `Archery Black`,
+  fontSize: 180,
 }
 
 const IndexPage = () => (
   <RootLayout>
     <div css={containerCSS}>
-      <Stats />
+      <div>
+        <div css={headerPositionCSS}>
+          <h1 css={headerCSS}>Leopold Wicht</h1>
+        </div>
+        <Stats />
+      </div>
     </div>
     <MouseFollower />
   </RootLayout>

@@ -1,6 +1,7 @@
 const colors = {
-  eggplant: `#614385`,
-  sky: `#516395`,
+  darkBlue: `#00207f`,
+  mediumBlue: `#00528b`,
+  yellow: `#fec763`,
 }
 
 export { colors }

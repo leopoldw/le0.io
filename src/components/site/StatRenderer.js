@@ -3,10 +3,11 @@ import React from 'react'
 const containerCSS = {
   color: `white`,
   opacity: `0.2`,
+  fontFamily: `Exo2Light`,
 }
 
 const keyCSS = {
-  fontWeight: `bold`,
+  fontFamily: `Exo2`,
 }
 
 const StatRenderer = ({ stats }) => (
