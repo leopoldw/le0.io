@@ -22,7 +22,7 @@ const headerPositionCSS = {
 const headerCSS = {
   color: colors.yellow,
   fontFamily: `Archery Black`,
-  fontSize: 180,
+  fontSize: 100,
 }
 
 const IndexPage = () => (

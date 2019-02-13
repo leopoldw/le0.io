@@ -2,11 +2,23 @@ import React, { useState, useRef } from 'react'
 
 const containerCSS = {
   position: `relative`,
+  display: `inline-block`,
+}
+
+const infoCSS = {
+  backgroundColor: `white`,
+  top: 0,
+  left: 0,
+  position: `absolute`,
+  padding: 3,
+  opacity: 0.6,
+  fontSize: 12,
+  transform: `translateY(-100%)`,
 }
 
 const hoverCSS = {
   backgroundColor: `white`,
-  opacity: 0.3,
+  opacity: 0.1,
   width: `100%`,
   height: `100%`,
   position: `absolute`,
@@ -52,6 +64,7 @@ const Guidelines = ({ children }) => {
     >
       {hasHover && (
         <>
+          <div css={infoCSS}>{`${Math.round(rect.width)} x ${Math.round(rect.height)}`}</div>
           <div css={verticalCSS} style={{ left: `${rect.x}px` }} />
           <div css={verticalCSS} style={{ left: `${rect.x + rect.width}px` }} />
           <div css={horizontalCSS} style={{ top: `${rect.y}px` }} />

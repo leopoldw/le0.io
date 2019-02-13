@@ -1,6 +1,7 @@
 import React from 'react'
+import Guidelines from './Guidelines'
 
-const containerCSS = {
+const textCSS = {
   color: `white`,
   opacity: `0.2`,
   fontFamily: `Exo2Light`,
@@ -11,14 +12,16 @@ const keyCSS = {
 }
 
 const StatRenderer = ({ stats }) => (
-  <div css={containerCSS}>
-    {stats.map(([name, value]) => (
-      <div key={name}>
-        <span css={keyCSS}>{`${name}: `}</span>
-        <span>{value}</span>
-      </div>
-    ))}
-  </div>
+  stats.map(([name, value]) => (
+    <div key={name}>
+      <Guidelines>
+        <div css={textCSS}>
+          <span css={keyCSS}>{`${name}: `}</span>
+          <span>{value}</span>
+        </div>
+      </Guidelines>
+    </div>
+  ))
 )
 
 export default StatRenderer
