@@ -12,7 +12,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     actions.createNodeField({
       node,
       name: `slug`,
-      value: `/blog/${fileName}`,
+      value: `/posts/${fileName}`,
     })
   }
 

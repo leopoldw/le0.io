@@ -52,11 +52,11 @@ const globalCSS = {
   },
 }
 
-const RootLayout = ({ children }) => (
+const RootLayout = ({ children, title, description }) => (
   <div css={rootCSS}>
     <ReactHelmet>
-      <meta charSet="utf-8" />
-      <title>Leo Site</title>
+      <title>{title}</title>
+      <meta name="description" content={description} />
     </ReactHelmet>
     <Global styles={globalFonts} />
     <Global styles={emotionReset} />

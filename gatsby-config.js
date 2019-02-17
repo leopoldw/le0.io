@@ -1,6 +1,10 @@
-const mdxFeed = require(`gatsby-mdx/feed`)
 const path = require(`path`)
 const isDev = process.env.NODE_ENV === `development`
+
+if (isDev)
+  require(`dotenv`).config({
+    path: `./.secrets`,
+  })
 
 module.exports = {
   siteMetadata: {
@@ -46,6 +50,12 @@ module.exports = {
       resolve: `gatsby-plugin-emotion`,
       options: {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: process.env.GA_TRACKING_ID,
       },
     },
     // {

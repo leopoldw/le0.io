@@ -5,7 +5,7 @@ const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => (
   <div>
-    <h1>BLOG INDEX</h1>
+    <h1>Post INDEX</h1>
     <ul>
       {posts.map(({ node: post }) => (
         <li key={post.id}>
