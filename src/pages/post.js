@@ -4,7 +4,7 @@ import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import mdxComponents from 'components/mdx'
-import { sizes, colors, animationSpeeds } from 'consts/design'
+import { sizes, colors, animationSpeeds, fontSizes } from 'consts/design'
 import MoonSVG from 'assets/moon.svg'
 import SunSVG from 'assets/sun.svg'
 
@@ -12,14 +12,22 @@ import SunSVG from 'assets/sun.svg'
 const styles = {
   container: {
     maxWidth: sizes.contentMaxWidth,
-    margin: `0 auto`,
+    margin: `0 auto 80px auto`,
+    padding: `0 20px`,
   },
   pageHeader: {
-    marginBottom: 40,
-    textAlign: `center`,
+    marginTop: 60,
+    marginBottom: 100,
+    // textAlign: `center`,
   },
-  logo: {
-    fontSize: 50,
+  siteTitle: {
+    fontSize: 80,
+    fontFamily: `Archery Black`,
+  },
+  name: {
+    fontSize: 30,
+    fontFamily: `Archery Black`,
+    letterSpacing: `1px`,
   },
   avatar: {
     width: 50,
@@ -27,25 +35,28 @@ const styles = {
     borderRadius: `100%`,
     backgroundPosition: `center center`,
     backgroundSize: `cover`,
-    margin: `0 auto`,
+    // margin: `0 auto`,
   },
   article: {
     transition: `color ${animationSpeeds.normal}ms linear`,
   },
   articleHeader: {
-    marginBottom: 30,
+    marginBottom: 50,
   },
   heading: {
-    fontSize: 40,
+    fontSize: fontSizes.heading,
     marginBottom: 20,
     fontWeight: `600`,
+    lineHeight: `1em`,
   },
   subheading: {
-    fontSize: 18,
+    fontSize: fontSizes.subtext,
     fontStyle: `italic`,
     letterSpacing: `0.5px`,
   },
   articleBody: {
+    lineHeight: `1.6em`,
+    letterSpacing: `1px`,
   },
   darkModeToggle: {
     position: `fixed`,
@@ -81,7 +92,10 @@ const styles = {
 
 const lightStyles = {
   backgroundColor: colors.lightYellow,
-  logo: {
+  siteTitle: {
+    color: colors.darkBlue,
+  },
+  name: {
     color: colors.darkBlue,
   },
   article: {
@@ -91,7 +105,10 @@ const lightStyles = {
 
 const darkStyles = {
   backgroundColor: colors.darkGrey,
-  logo: {
+  siteTitle: {
+    color: colors.yellow,
+  },
+  name: {
     color: colors.yellow,
   },
   article: {
@@ -153,7 +170,8 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
         <div css={getCSS(`container`)}>
           <div css={getCSS(`pageHeader`)}>
             <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
-            <div css={getCSS(`logo`, darkMode)}>le0.io</div>
+            <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
+            <div css={getCSS(`name`, darkMode)}>Leopold Wicht</div>
           </div>
           <main>
             <article css={getCSS(`article`, darkMode)}>

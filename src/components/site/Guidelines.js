@@ -12,6 +12,7 @@ const infoCSS = {
   position: `absolute`,
   padding: 3,
   opacity: 0.6,
+  // design?
   fontSize: 12,
   transform: `translateY(-100%)`,
 }

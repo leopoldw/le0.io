@@ -5,7 +5,7 @@ const CSS = {
   marginBottom: sizes.paragraphSpacing,
 }
 
-const P = ({ children }) =>
-  <div css={CSS}>{children}</div>
+const P = props =>
+  <p css={CSS} {...props} />
 
 export default P

@@ -1,10 +1,18 @@
 import React from 'react'
-import { colors } from 'consts/design'
+import { colors, sizes, borderRadii, fontSizes } from 'consts/design'
 
 const styles = {
   container: {
-    fontSize: 20,
+    fontSize: fontSizes.larger,
     position: `relative`,
+    fontStyle: `italic`,
+    background: colors.standout,
+    borderRadius: borderRadii.small,
+    padding: 15,
+    marginBottom: sizes.paragraphSpacing,
+    '& p:last-child': {
+      marginBottom: 0,
+    },
   },
   bookmark: {
     width: 5,
@@ -12,7 +20,8 @@ const styles = {
     background: colors.yellow,
     position: `absolute`,
     top: 0,
-    left: -20,
+    left: -15,
+    borderRadius: borderRadii.small,
   },
 }
 

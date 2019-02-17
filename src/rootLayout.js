@@ -16,6 +16,7 @@ const styles = {
       fontFamily: `"Exo 2"`,
       fontWeight: `300`,
       fontSize: 22,
+      // textRendering: `optimizeLegibility`,
     },
   },
   fonts: css`
@@ -24,6 +25,7 @@ const styles = {
       src: url('${fonts.ArcheryBlack}') format('woff');
       font-weight: normal;
       font-style: normal;
+      font-display: block;
     }
   `,
   root: {
