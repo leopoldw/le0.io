@@ -12,6 +12,11 @@ const styles = {
       height: `100%`,
       transition: `background ${animationSpeeds.normal}ms linear`,
     },
+    body: {
+      fontFamily: `"Exo 2"`,
+      fontWeight: `300`,
+      fontSize: 22,
+    },
   },
   fonts: css`
     @font-face {
@@ -20,37 +25,10 @@ const styles = {
       font-weight: normal;
       font-style: normal;
     }
-
-    @font-face {
-      font-family: 'Exo2Light';
-      src: url('${fonts.Exo2Light_woff2}') format('woff2'),
-          url('${fonts.Exo2Light_woff}') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: 'Exo2';
-      src: url('${fonts.Exo2Regular_woff2}') format('woff2'),
-          url('${fonts.Exo2Regular_woff}') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    @font-face {
-      font-family: 'Exo2Bold';
-      src: url('${fonts.Exo2Bold_woff2}') format('woff2'),
-          url('${fonts.Exo2Bold_woff}') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
   `,
   root: {
     width: `100%`,
     height: `100%`,
-    fontFamily: `Exo2`,
-    letterSpacing: `0.05em`,
-    fontWeight: `300`,
   },
 }
 

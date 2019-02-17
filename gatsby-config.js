@@ -65,6 +65,26 @@ module.exports = {
         trackingId: process.env.GA_TRACKING_ID,
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Exo 2`,
+            subsets: [`latin`],
+            variants: [`300`, `600`],
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-feed`,
     //   options: mdxFeed,

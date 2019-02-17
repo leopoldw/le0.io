@@ -4,16 +4,18 @@ import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import mdxComponents from 'components/mdx'
-import { sizes, colors } from 'consts/design'
+import { sizes, colors, animationSpeeds } from 'consts/design'
+import MoonSVG from 'assets/moon.svg'
+import SunSVG from 'assets/sun.svg'
+
 
 const styles = {
   container: {
     maxWidth: sizes.contentMaxWidth,
     margin: `0 auto`,
-    fontFamily: `Exo2`,
   },
   pageHeader: {
-    marginBottom: 20,
+    marginBottom: 40,
     textAlign: `center`,
   },
   logo: {
@@ -31,15 +33,46 @@ const styles = {
     marginBottom: 30,
   },
   heading: {
-    fontSize: 50,
+    fontSize: 40,
     marginBottom: 20,
+    fontWeight: `600`,
   },
   subheading: {
-
+    fontSize: 18,
+    fontStyle: `italic`,
+    letterSpacing: `0.5px`,
   },
   articleBody: {
-    fontSize: 20,
-    lineHeight: `1.5em`,
+  },
+  darkModeToggle: {
+    position: `fixed`,
+    right: 10,
+    top: 10,
+    width: 40,
+    height: 40,
+    cursor: `pointer`,
+    opacity: 0.5,
+    '&: hover': {
+      opacity: 1,
+    },
+  },
+  darkModeInner: {
+    background: `red`,
+    display: `relative`,
+    '& > svg': {
+      width: `100%`,
+      height: `100%`,
+    },
+  },
+  SVG: {
+    transition: `transform ${animationSpeeds.normal}ms linear`,
+    backfaceVisibility: `hidden`,
+    position: `absolute`,
+    top: 0,
+    left: 0,
+  },
+  SVGHidden: {
+    transform: `rotateX(-180deg)`,
   },
 }
 
@@ -63,13 +96,13 @@ const darkStyles = {
   },
 }
 
-// special helper to reduce boilerplate
-// for dark mode styling
 const getCSS = (key, darkMode) => [
   styles[key],
   darkMode ? darkStyles[key] : lightStyles[key],
 ].filter(style => style)
 
+// special helper to reduce boilerplate
+// for dark mode styling
 const DARK_MODE_STORAGE_KEY = `DARK_MODE`
 const withDarkMode = () => {
   const hasLocalStorage = `localStorage` in window
@@ -95,7 +128,6 @@ const withDarkMode = () => {
   }
 }
 
-
 const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childImageSharp } } }) => {
   const { darkMode, toggleDarkMode } = withDarkMode()
 
@@ -106,7 +138,12 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
       backgroundColor={getCSS(`backgroundColor`, darkMode)}
     >
       <MDXProvider components={mdxComponents}>
-        <button onClick={toggleDarkMode}>DM</button>
+        <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
+          <div css={getCSS(`darkModeInner`)}>
+            <MoonSVG css={[getCSS(`SVG`), darkMode && getCSS(`SVGHidden`)]} />
+            <SunSVG css={[getCSS(`SVG`), !darkMode && getCSS(`SVGHidden`)]} />
+          </div>
+        </div>
         <div css={getCSS(`container`)}>
           <div css={getCSS(`pageHeader`)}>
             <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
@@ -116,7 +153,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
             <article>
               <header css={getCSS(`articleHeader`)}>
                 <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
-                <div css={getCSS(`subheading`)}>{`${frontmatter.date} . ${timeToRead} min read`}</div>
+                <div css={getCSS(`subheading`)}>{`${frontmatter.date} - ${timeToRead} min read`}</div>
               </header>
               <div css={getCSS(`articleBody`, darkMode)}>
                 <MDXRenderer>{code.body}</MDXRenderer>
