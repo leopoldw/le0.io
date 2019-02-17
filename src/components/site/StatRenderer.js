@@ -11,10 +11,10 @@ const keyCSS = {
   fontFamily: `Exo2`,
 }
 
-const StatRenderer = ({ stats }) => (
+const StatRenderer = ({ stats, guidelines = true }) => (
   stats.map(([name, value]) => (
     <div key={name}>
-      <Guidelines>
+      <Guidelines disabled={!guidelines}>
         <div css={textCSS}>
           <span css={keyCSS}>{`${name}: `}</span>
           <span>{value}</span>

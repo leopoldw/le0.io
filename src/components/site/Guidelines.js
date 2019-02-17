@@ -46,7 +46,10 @@ const horizontalCSS = {
   borderTop: `1px dotted white`,
 }
 
-const Guidelines = ({ children }) => {
+const Guidelines = ({ children, disabled }) => {
+  if (disabled)
+    return children
+
   const containerRef = useRef()
   const [hasHover, setHasHover] = useState(false)
 

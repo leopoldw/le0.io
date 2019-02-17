@@ -23,6 +23,7 @@ const MouseFollower = () => {
   return (
     <div css={css} style={{ top: `${mousePosition.y + OFFSET}px`, left: `${mousePosition.x + OFFSET}px` }}>
       <StatRenderer
+        guidelines={false}
         stats={[
           [`X`, mousePosition.x],
           [`Y`, mousePosition.y],
