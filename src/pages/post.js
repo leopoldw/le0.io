@@ -29,6 +29,9 @@ const styles = {
     backgroundSize: `cover`,
     margin: `0 auto`,
   },
+  article: {
+    transition: `color ${animationSpeeds.normal}ms linear`,
+  },
   articleHeader: {
     marginBottom: 30,
   },
@@ -81,18 +84,21 @@ const lightStyles = {
   logo: {
     color: colors.darkBlue,
   },
-  articleBody: {
+  article: {
     color: colors.almostBlack,
   },
 }
 
 const darkStyles = {
-  backgroundColor: colors.darkBlue,
+  backgroundColor: colors.darkGrey,
   logo: {
     color: colors.yellow,
   },
-  articleBody: {
-    color: `#fff`,
+  article: {
+    color: colors.almostWhite,
+  },
+  SVG: {
+    color: `white`,
   },
 }
 
@@ -140,8 +146,8 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
       <MDXProvider components={mdxComponents}>
         <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
           <div css={getCSS(`darkModeInner`)}>
-            <MoonSVG css={[getCSS(`SVG`), darkMode && getCSS(`SVGHidden`)]} />
-            <SunSVG css={[getCSS(`SVG`), !darkMode && getCSS(`SVGHidden`)]} />
+            <MoonSVG css={[getCSS(`SVG`, darkMode), darkMode && getCSS(`SVGHidden`, darkMode)]} />
+            <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
           </div>
         </div>
         <div css={getCSS(`container`)}>
@@ -150,7 +156,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
             <div css={getCSS(`logo`, darkMode)}>le0.io</div>
           </div>
           <main>
-            <article>
+            <article css={getCSS(`article`, darkMode)}>
               <header css={getCSS(`articleHeader`)}>
                 <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
                 <div css={getCSS(`subheading`)}>{`${frontmatter.date} - ${timeToRead} min read`}</div>

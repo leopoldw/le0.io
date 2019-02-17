@@ -4,6 +4,8 @@ const colors = {
   yellow: `#fec763`,
   lightYellow: `#fff7e9`,
   almostBlack: `#1c1c1c`,
+  almostWhite: `#ffffff`,
+  darkGrey: `#1d1d1d`,
 }
 
 const sizes = {
