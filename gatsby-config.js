@@ -35,7 +35,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        useMozJpeg: !isDev,
+        useMozJpeg: true,
         stripMetadata: true,
       },
     },
@@ -44,6 +44,13 @@ module.exports = {
       options: {
         path: path.join(__dirname, `posts`),
         name: `posts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: path.join(__dirname, `src`, `assets`),
+        name: `assets`,
       },
     },
     {

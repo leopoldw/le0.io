@@ -1,12 +1,10 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const path = require(`path`)
 
-const BASE_POST_PATH = `./posts`
-
 exports.onCreateNode = ({ node, actions, getNode }) => {
   // add page for each blog node
   if (node.internal.type === `Mdx`) {
-    const filePath = createFilePath({ node, getNode, basePath: BASE_POST_PATH })
+    const filePath = createFilePath({ node, getNode, basePath: `./posts` })
     const fileName = filePath.split(`/`)[2]
 
     actions.createNodeField({
@@ -40,14 +38,6 @@ exports.createPages = ({ graphql, actions }) =>
               fields {
                 slug
               }
-              tableOfContents
-              parent {
-                ... on File {
-                  absolutePath
-                  name
-                  sourceInstanceName
-                }
-              }
             }
           }
         }
@@ -59,12 +49,7 @@ exports.createPages = ({ graphql, actions }) =>
         data.allMdx.edges.forEach(({ node }) => {
           actions.createPage({
             path: node.fields.slug,
-            component: path.resolve(`./src/pages/blogPost.js`),
-            // context: {
-            //   absPath: node.parent.absolutePath,
-            //   tableOfContents: node.tableOfContents,
-            //   id: node.id,
-            // },
+            component: path.resolve(`./src/pages/post.js`),
           })
         })
 

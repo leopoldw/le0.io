@@ -1,7 +1,7 @@
 import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 
-const Code = ({ className: lang, children }) => (
+const Code = ({ className: lang = ``, children }) => (
   <Highlight {...defaultProps} code={children} language={lang.replace(`language-`, ``)}>
     {({ className, style, tokens, getLineProps, getTokenProps }) => (
       <pre className={className} style={style}>

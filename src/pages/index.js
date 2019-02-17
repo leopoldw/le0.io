@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { colors } from 'consts/design'
-import RootLayout from 'layouts/rootLayout'
+import RootLayout from 'rootLayout'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
 import Stats from 'components/site/Stats'
