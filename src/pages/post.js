@@ -111,7 +111,7 @@ const getCSS = (key, darkMode) => [
 // for dark mode styling
 const DARK_MODE_STORAGE_KEY = `DARK_MODE`
 const withDarkMode = () => {
-  const hasLocalStorage = `localStorage` in window
+  const hasLocalStorage = typeof window === `object` && `localStorage` in window
 
   const [darkModeString, setDarkMode] = useState(
     hasLocalStorage

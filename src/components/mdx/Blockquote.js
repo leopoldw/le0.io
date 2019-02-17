@@ -1,4 +1,5 @@
 import React from 'react'
+import { colors } from 'consts/design'
 
 const styles = {
   container: {
@@ -8,7 +9,7 @@ const styles = {
   bookmark: {
     width: 5,
     height: `100%`,
-    background: `red`,
+    background: colors.yellow,
     position: `absolute`,
     top: 0,
     left: -20,
