@@ -103,5 +103,6 @@ module.exports = {
         theme_color_in_head: false,
       },
     },
+    `gatsby-plugin-netlify`, // always last
   ],
 }
