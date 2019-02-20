@@ -4,8 +4,8 @@ import StatRenderer from './StatRenderer'
 
 const css = {
   position: `fixed`,
-  bottom: 20,
-  right: 20,
+  bottom: 10,
+  right: 10,
   textAlign: `right`,
 }
 

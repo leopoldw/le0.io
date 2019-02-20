@@ -15,30 +15,35 @@ const styles = {
     position: `relative`,
   },
   headerPosition: {
-    position: `absolute`,
-    top: 20,
-    left: 20,
+    display: `flex`,
+    height: `100%`,
+    justifyContent: `center`,
+    alignItems: `center`,
   },
   header: {
     color: colors.yellow,
     fontFamily: `Archery Black`,
     fontSize: 100,
-    marginBottom: 20,
+    margin: 0,
+    lineHeight: `1.2em`,
   },
   subheader: {
     // TODO: dedup
     color: colors.yellow,
     fontFamily: `Archery Black`,
     fontSize: 40,
-    marginBottom: 40,
+    lineHeight: `1.2em`,
+  },
+  buttonContainer: {
+    marginTop: 20,
   },
 }
 
 const IndexPage = () => (
   <RootLayout>
     <div css={styles.container}>
-      <main>
-        <div css={styles.headerPosition}>
+      <div css={styles.headerPosition}>
+        <div>
           <Guidelines>
             <h1 css={styles.header}>Leopold Wicht</h1>
           </Guidelines>
@@ -47,14 +52,12 @@ const IndexPage = () => (
               <div css={styles.subheader}>Front End Wizard</div>
             </Guidelines>
           </div>
-          <div>
-            <Guidelines>
-              <Button to="/posts">See All Posts</Button>
-            </Guidelines>
+          <div css={styles.buttonContainer}>
+            <Button to="/posts">See All Posts</Button>
           </div>
         </div>
-        <Stats />
-      </main>
+      </div>
+      <Stats />
     </div>
     <MouseFollower />
   </RootLayout>
