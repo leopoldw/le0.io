@@ -1,7 +1,8 @@
 const colors = {
   darkBlue: `#00207f`,
   mediumBlue: `#00528b`,
-  yellow: `#fec763`,
+  // yellow: `#fec763`,
+  yellow: `#fff600`,
   lightYellow: `#fff7e9`,
   almostBlack: `#1c1c1c`,
   almostWhite: `#ffffff`,
@@ -17,6 +18,7 @@ const sizes = {
 // root is 22px
 const fontSizes = {
   subtext: `0.75em`,
+  smaller: `0.9em`,
   larger: `1.1em`,
   heading: `2.2em`,
 }

@@ -8,7 +8,7 @@ const CSS = {
   margin: `0em 0.2em`,
   borderRadius: borderRadii.small,
   fontFamily: `Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace`,
-  fontSize: `0.6em`,
+  fontSize: `0.75em`,
 }
 
 const InlineCode = props =>

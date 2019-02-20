@@ -4,17 +4,13 @@ import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import mdxComponents from 'components/mdx'
-import { sizes, colors, animationSpeeds, fontSizes } from 'consts/design'
+import { colors, animationSpeeds, fontSizes } from 'consts/design'
 import MoonSVG from 'assets/moon.svg'
 import SunSVG from 'assets/sun.svg'
+import ContentContainer from 'components/blog/ContentContainer'
 
 
 const styles = {
-  container: {
-    maxWidth: sizes.contentMaxWidth,
-    margin: `0 auto 80px auto`,
-    padding: `0 20px`,
-  },
   pageHeader: {
     marginTop: 60,
     marginBottom: 100,
@@ -167,7 +163,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
             <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
           </div>
         </div>
-        <div css={getCSS(`container`)}>
+        <ContentContainer>
           <div css={getCSS(`pageHeader`)}>
             <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
             <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
@@ -184,7 +180,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
               </div>
             </article>
           </main>
-        </div>
+        </ContentContainer>
       </MDXProvider>
     </RootLayout>
   )

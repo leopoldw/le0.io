@@ -10,13 +10,13 @@ const styles = {
     'html, body, #___gatsby, #___gatsby > div': {
       width: `100%`,
       height: `100%`,
-      transition: `background ${animationSpeeds.normal}ms linear`,
+      // transition: `background ${animationSpeeds.normal}ms linear`,
     },
     body: {
       fontFamily: `"Exo 2"`,
       fontWeight: `300`,
-      fontSize: 22,
-      // textRendering: `optimizeLegibility`,
+      fontSize: 20,
+      textRendering: `optimizeLegibility`,
     },
   },
   fonts: css`
@@ -37,7 +37,7 @@ const styles = {
 const RootLayout = ({ children, title, description, backgroundColor }) => (
   <div css={styles.root}>
     <ReactHelmet>
-      <title>{title}</title>
+      <title>{title ? `${title} - le0.io` : `le0.io`}</title>
       <meta name="description" content={description} />
     </ReactHelmet>
     <Global styles={styles.fonts} />

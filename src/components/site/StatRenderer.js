@@ -1,23 +1,33 @@
 import React from 'react'
 import Guidelines from './Guidelines'
+import { fontSizes } from 'consts/design'
 
-const textCSS = {
-  color: `white`,
-  opacity: `0.2`,
-  fontFamily: `Exo2Light`,
-}
-
-const keyCSS = {
-  fontFamily: `Exo2`,
+const style = {
+  text: {
+    color: `white`,
+    lineHeight: `1.2em`,
+    letterSpacing: 0.5,
+    fontSize: fontSizes.smaller,
+  },
+  key: {
+    fontWeight: `600`,
+    opacity: `0.4`,
+    marginRight: 8,
+  },
+  value: {
+    fontWeight: `300`,
+    opacity: `0.2`,
+    fontStyle: `italic`,
+  },
 }
 
 const StatRenderer = ({ stats, guidelines = true }) => (
   stats.map(([name, value]) => (
     <div key={name}>
       <Guidelines disabled={!guidelines}>
-        <div css={textCSS}>
-          <span css={keyCSS}>{`${name}: `}</span>
-          <span>{value}</span>
+        <div css={style.text}>
+          <span css={style.key}>{`${name}`}</span>
+          <span css={style.value}>{value}</span>
         </div>
       </Guidelines>
     </div>

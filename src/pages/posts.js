@@ -1,23 +1,58 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import RootLayout from '../rootLayout'
+import ContentContainer from 'components/blog/ContentContainer'
+import UnstyledLink from 'components/site/UnstyledLink'
+import { colors, fontSizes, borderRadii } from 'consts/design'
+
+const styles = {
+  pageContainer: {
+    paddingTop: 50,
+  },
+  previewContainer: {
+    border: `1px solid rgba(255, 255, 255, 0.2)`,
+    padding: 20,
+    textAlign: `center`,
+    borderRadius: borderRadii.medium,
+    '&:hover': {
+      borderColor: `white`,
+    },
+  },
+  postHeader: {
+    fontSize: fontSizes.heading,
+    marginBottom: 40,
+    color: colors.yellow,
+  },
+  postSummary: {
+    color: `white`,
+  },
+}
+
+const PostPreview = ({ post }) => (
+  <div css={styles.previewContainer}>
+    <h2 css={styles.postHeader}>{post.frontmatter.title}</h2>
+    <p css={styles.postSummary}>{post.frontmatter.summary}</p>
+  </div>
+)
 
 const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => (
-  <div>
-    <h1>Post INDEX</h1>
-    <ul>
-      {posts.map(({ node: post }) => (
-        <li key={post.id}>
-          <Link to={post.fields.slug}>
-            <h2>{post.frontmatter.title}</h2>
-          </Link>
-          <p>{post.excerpt}</p>
-        </li>
-      ))
-      }
-    </ul>
-  </div>
+  <RootLayout
+    title="Frontend Posts"
+    description="TODO"
+    backgroundColor={colors.mediumBlue}
+  >
+    <ContentContainer>
+      <main css={styles.pageContainer}>
+        {posts.map(({ node: post }) => (
+          <UnstyledLink to={post.fields.slug} key={post.id}>
+            <PostPreview post={post} />
+          </UnstyledLink>
+        ))}
+      </main>
+    </ContentContainer>
+  </RootLayout>
 )
 
 export default IndexPage
@@ -28,10 +63,10 @@ export const query = graphql`
       edges {
         node {
           id
-          excerpt
           timeToRead
           frontmatter {
             title
+            summary
           }
           fields {
             slug
