@@ -14,6 +14,7 @@ const UAStats = () => {
     ...getStatObject(`os`, `OS`, `${UA.os.name} ${UA.os.version}`, UA.os.name),
   }
 
+  // no need to order
   return (
     <StatRenderer
       stats={Object.values(stats)}

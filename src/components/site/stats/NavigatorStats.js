@@ -1,17 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import StatRenderer from '../StatRenderer'
-import { getStatObject } from './shared'
+import { getStatObject, convertObjectToOrderedArray } from './shared'
 
-const getConnection = () => getStatObject(`connection`, `Connection`, navigator.connection.type || navigator.connection.effectiveType, navigator.connection.type || navigator.connection.effectiveType)
+const getConnection = () => {
+  const { connection = {} } = navigator
 
-const getPowerSource = battery => getStatObject(`power`, `Charging`, battery.charging ? `yes` : `no`, battery.charging !== undefined)
+  return getStatObject(`connection`, `Connection`, connection.type || connection.effectiveType, connection &&connection.type || connection.effectiveType)
+}
 
-const getBatteryLevel = battery => getStatObject(`battery`, `Battery Level`, `${battery.level * 100}%`, battery.level)
+const getPowerSource = battery => getStatObject(`power`, `Charging`, battery.charging === false ? `no` : `yes`, true, battery.charging)
+
+const getBatteryLevel = battery => getStatObject(`battery`, `Battery Level`, `${Math.round(battery.level * 100)}%`, battery.level)
+
+const getCPU = () => getStatObject(`cpu`, `CPU Cores`, navigator.hardwareConcurrency, navigator.hardwareConcurrency)
+
+// https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8
+const getGPU = () => {
+  try {
+    const canvas = document.createElement(`canvas`)
+    const context = canvas.getContext(`webgl`) || canvas.getContext(`experimental-webgl`)
+    const debugInfo = context.getExtension(`WEBGL_debug_renderer_info`)
+    const renderer = context.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
+    return getStatObject(`gpu`, `GPU`, renderer, renderer)
+  } catch (e) {
+    return {}
+  }
+}
 
 const DEFAULT_STATS = {
   ...getConnection(),
   ...getStatObject(`power`, `Power Source`, false, true),
   ...getStatObject(`battery`, `Battery Level`, false, true),
+  ...getCPU(),
+  ...getGPU(),
 }
 
 const useNavigatorStats = () => {
@@ -22,32 +43,33 @@ const useNavigatorStats = () => {
       navigator
         .getBattery()
         .then(battery => {
-          const setStats = () =>
+          const setStats = () => {
             setNavigatorStats({
               ...navigatorStats,
               ...getPowerSource(battery),
               ...getBatteryLevel(battery),
             })
+          }
 
           setStats()
           battery.onchargingchange = setStats
           battery.onlevelchange = setStats
         })
-
-    return () => {
-      // ok
-    }
+    else
+      setNavigatorStats(getConnection())
   }, [])
 
   return navigatorStats
 }
 
+const ORDER = [`connection`, `charging`, `battery`, `cpu`, `gpu`]
 const NavigatorStats = () => {
   const stats = useNavigatorStats()
+  const statArray = convertObjectToOrderedArray(stats, ORDER)
 
   return (
     <StatRenderer
-      stats={Object.values(stats)}
+      stats={statArray}
     />
   )
 }

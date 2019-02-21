@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StatRenderer from '../StatRenderer'
-import { getStatObject } from './shared'
+import { getStatObject, convertObjectToOrderedArray } from './shared'
 import langlong from 'latlng-to-dms'
 
 const DEFAULT_STATS = {
@@ -35,12 +35,14 @@ const useIPStats = () => {
   return IPStats
 }
 
+const ORDER = [`ip`, `location`, `isp`, `gps`]
 const IPStats = () => {
   const stats = useIPStats()
+  const statArray = convertObjectToOrderedArray(stats, ORDER)
 
   return (
     <StatRenderer
-      stats={Object.values(stats)}
+      stats={statArray}
     />
   )
 }

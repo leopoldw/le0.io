@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react'
 import StatRenderer from '../StatRenderer'
-import { getStatObject } from './shared'
+import { getStatObject, convertObjectToOrderedArray } from './shared'
 import dateformat from 'dateformat'
 
 const getResolution = () => getStatObject(`size`, `Resolution`, `${window.innerWidth}x${window.innerHeight}`, true)
@@ -44,12 +44,14 @@ const useWindowStats = () => {
   return windowStats
 }
 
+const ORDER = [`size`, `date`, `time`]
 const WindowStats = () => {
   const stats = useWindowStats()
+  const statArray = convertObjectToOrderedArray(stats, ORDER)
 
   return (
     <StatRenderer
-      stats={Object.values(stats)}
+      stats={statArray}
     />
   )
 }

@@ -7,4 +7,12 @@ const getStatObject = (statKey, statName, statValue, condition, fluid = false) =
     ? { [statKey]: [statName, statValue, fluid] }
     : {}
 
-export { getStatObject }
+const convertObjectToOrderedArray = (object, order) =>
+  order
+    .reduce((acc, key) => {
+      acc.push(object[key])
+      return acc
+    }, [])
+    .filter(item => item)
+
+export { getStatObject, convertObjectToOrderedArray }

@@ -91,10 +91,10 @@ const IndexPage = () => (
         <IPStats />
       </div>
       <div css={styles.statsBottomRightPosition}>
-        <WindowStats />
+        <NavigatorStats />
       </div>
       <div css={styles.statsBottomLeftPosition}>
-        <NavigatorStats />
+        <WindowStats />
       </div>
     </div>
     <MouseFollower />
