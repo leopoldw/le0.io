@@ -37,6 +37,12 @@ const styles = {
   buttonContainer: {
     marginTop: 20,
   },
+  rightStatsPosition: {
+    position: `fixed`,
+    bottom: 10,
+    right: 10,
+    textAlign: `right`,
+  },
 }
 
 const IndexPage = () => (
@@ -57,7 +63,9 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <Stats />
+      <div css={styles.rightStatsPosition}>
+        <Stats />
+      </div>
     </div>
     <MouseFollower />
   </RootLayout>

@@ -10,7 +10,7 @@ const styles = {
     'html, body, #___gatsby, #___gatsby > div': {
       width: `100%`,
       height: `100%`,
-      // transition: `background ${animationSpeeds.normal}ms linear`,
+      transition: `background ${animationSpeeds.normal}ms linear`,
     },
     body: {
       fontFamily: `"Exo 2"`,

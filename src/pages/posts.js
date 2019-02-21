@@ -10,21 +10,20 @@ const styles = {
     paddingTop: 50,
   },
   previewContainer: {
-    border: `1px solid rgba(255, 255, 255, 0.2)`,
+    border: `1px solid rgba(0, 0, 0, 0.2)`,
     padding: 20,
     textAlign: `center`,
     borderRadius: borderRadii.medium,
     '&:hover': {
-      borderColor: `white`,
+      borderColor: `black`,
     },
   },
   postHeader: {
     fontSize: fontSizes.heading,
     marginBottom: 40,
-    color: colors.yellow,
   },
   postSummary: {
-    color: `white`,
+    // color: `white`,
   },
 }
 
@@ -41,7 +40,7 @@ const IndexPage = ({
   <RootLayout
     title="Frontend Posts"
     description="TODO"
-    backgroundColor={colors.mediumBlue}
+    backgroundColor={colors.lightYellow}
   >
     <ContentContainer>
       <main css={styles.pageContainer}>

@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react'
 import UAParser from 'ua-parser-js'
 import StatRenderer from './StatRenderer'
 
-const css = {
-  position: `fixed`,
-  bottom: 10,
-  right: 10,
-  textAlign: `right`,
-}
-
 const getStatObject = (statKey, statName, statValue, condition) =>
   (
     (typeof condition === `string` && condition.length > 0) ||
@@ -61,14 +54,12 @@ const Stats = () => {
   const windowStats = withWindowStats()
 
   return (
-    <div css={css}>
-      <StatRenderer
-        stats={Object.values({
-          ...UAStats,
-          ...windowStats,
-        })}
-      />
-    </div>
+    <StatRenderer
+      stats={Object.values({
+        ...UAStats,
+        ...windowStats,
+      })}
+    />
   )
 }
 
