@@ -19,6 +19,9 @@ const style = {
     opacity: `0.2`,
     fontStyle: `italic`,
   },
+  redacted: {
+    filter: `blur(1px)`,
+  },
 }
 
 const StatRenderer = ({ stats, guidelines = true }) => (
@@ -27,7 +30,13 @@ const StatRenderer = ({ stats, guidelines = true }) => (
       <Guidelines disabled={!guidelines}>
         <div css={style.text}>
           <span css={style.key}>{`${name}`}</span>
-          <span css={style.value}>{value}</span>
+          <span css={style.value}>
+            {
+            value === false
+              ? <span css={style.redacted}>{`<REDACTED>`}</span>
+              : value
+            }
+          </span>
         </div>
       </Guidelines>
     </div>
