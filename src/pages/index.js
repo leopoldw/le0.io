@@ -7,6 +7,7 @@ import Guidelines from 'components/site/Guidelines'
 import UAStats from 'components/site/stats/UAStats'
 import IPStats from 'components/site/stats/IPStats'
 import WindowStats from 'components/site/stats/WindowStats'
+import NavigatorStats from 'components/site/stats/NavigatorStats'
 import Button from 'components/site/Button'
 
 const STAT_OFFSET = 10
@@ -58,6 +59,11 @@ const styles = {
     right: STAT_OFFSET,
     textAlign: `right`,
   },
+  statsBottomLeftPosition: {
+    position: `fixed`,
+    bottom: STAT_OFFSET,
+    left: STAT_OFFSET,
+  },
 }
 
 const IndexPage = () => (
@@ -86,6 +92,9 @@ const IndexPage = () => (
       </div>
       <div css={styles.statsBottomRightPosition}>
         <WindowStats />
+      </div>
+      <div css={styles.statsBottomLeftPosition}>
+        <NavigatorStats />
       </div>
     </div>
     <MouseFollower />

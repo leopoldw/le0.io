@@ -1,20 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import StatRenderer from '../StatRenderer'
 import { getStatObject } from './shared'
+import dateformat from 'dateformat'
 
-const getWindowStats = () => getStatObject(`size`, `Resolution`, `${window.innerWidth}x${window.innerHeight}`, true)
+const getResolution = () => getStatObject(`size`, `Resolution`, `${window.innerWidth}x${window.innerHeight}`, true)
+
+const getTime = () => {
+  const date = new Date()
+
+  return {
+    ...getStatObject(`date`, `Local Date`, dateformat(date, `dS mmm, yyyy`), true),
+    ...getStatObject(`time`, `Local Time`, dateformat(date, `h:MM:ss TT`), true),
+  }
+}
 
 const withWindowStats = () => {
-  const [windowStats, setWindowStats] = useState({})
+  const [windowStats, setWindowStats] = useState({
+    ...getResolution(),
+    ...getTime(),
+  })
 
   useEffect(() => {
-    setWindowStats(getWindowStats())
-
     const resizeWatcher = window.addEventListener(`resize`, () => {
-      setWindowStats(getWindowStats())
+      setWindowStats({
+        ...windowStats,
+        ...getResolution(),
+      })
     })
 
-    return () => window.removeEventListener(`resize`, resizeWatcher)
+    const interval = setInterval(() => {
+      setWindowStats({
+        ...windowStats,
+        ...getTime(),
+      })
+    }, 1000)
+
+    return () => {
+      window.removeEventListener(`resize`, resizeWatcher)
+      clearInterval(interval)
+    }
   }, [])
 
   return windowStats

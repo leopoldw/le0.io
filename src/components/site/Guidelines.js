@@ -54,7 +54,6 @@ const Guidelines = ({ children, disabled }) => {
   if (hasHover && containerRef.current)
     rect = containerRef.current.getBoundingClientRect()
 
-
   return (
     <div
       ref={containerRef}
@@ -62,7 +61,7 @@ const Guidelines = ({ children, disabled }) => {
       onMouseLeave={() => setHasHover(false)}
       css={styles.container}
     >
-      {hasHover && (
+      {(hasHover && rect) && (
         <>
           <div css={styles.info}>{`${Math.round(rect.width)} x ${Math.round(rect.height)}`}</div>
           <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${rect.x}px` }} />

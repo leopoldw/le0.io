@@ -10,6 +10,7 @@
     "@emotion/styled": "^10.0.7",
     "@mdx-js/mdx": "^0.16.8",
     "@mdx-js/tag": "^0.16.8",
+    "dateformat": "^3.0.3",
     "dotenv": "^6.2.0",
     "emotion-reset": "^2.0.1",
     "eslint": "^5.13.0",
