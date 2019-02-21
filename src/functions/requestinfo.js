@@ -4,7 +4,7 @@ import GeolocationParams from 'ip-geolocation-api-javascript-sdk/GeolocationPara
 // https://app.ipgeolocation.io/
 const geolocation = geolocationAPI(process.env.GEOLOCATION_TOKEN, false)
 
-const handler = ({ headers }, context, callback) => {
+exports.handler = ({ headers }, context, callback) => {
   const ip = headers[`client-ip`] || headers[`x-bb-ip`] || headers[`x-forwarded-for`]
   const language = headers[`x-language`]
 
@@ -21,5 +21,3 @@ const handler = ({ headers }, context, callback) => {
     })
   }, params)
 }
-
-export { handler }
