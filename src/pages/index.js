@@ -4,8 +4,11 @@ import { colors } from 'consts/design'
 import RootLayout from 'rootLayout'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
-import Stats from 'components/site/Stats'
+import UAStats from 'components/site/stats/UAStats'
+import WindowStats from 'components/site/stats/WindowStats'
 import Button from 'components/site/Button'
+
+const STAT_OFFSET = 10
 
 const styles = {
   container: {
@@ -37,10 +40,16 @@ const styles = {
   buttonContainer: {
     marginTop: 20,
   },
-  rightStatsPosition: {
+  statsTopRightPosition: {
     position: `fixed`,
-    bottom: 10,
-    right: 10,
+    top: STAT_OFFSET,
+    right: STAT_OFFSET,
+    textAlign: `right`,
+  },
+  statsBottomRightPosition: {
+    position: `fixed`,
+    bottom: STAT_OFFSET,
+    right: STAT_OFFSET,
     textAlign: `right`,
   },
 }
@@ -63,8 +72,11 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <div css={styles.rightStatsPosition}>
-        <Stats />
+      <div css={styles.statsTopRightPosition}>
+        <UAStats />
+      </div>
+      <div css={styles.statsBottomRightPosition}>
+        <WindowStats />
       </div>
     </div>
     <MouseFollower />
