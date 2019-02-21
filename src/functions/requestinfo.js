@@ -1,14 +1,7 @@
-// import GeolocationAPI from 'ip-geolocation-api-javascript-sdk'
-// import GeolocationParams from 'ip-geolocation-api-javascript-sdk/GeolocationParams.js'
-
-const GeolocationAPI = require(`ip-geolocation-api-javascript-sdk`)
-const GeolocationParams = require(`ip-geolocation-api-javascript-sdk/GeolocationParams.js`)
-
-// https://app.ipgeolocation.io/
-const geolocation = new GeolocationAPI(process.env.GEOLOCATION_TOKEN, false)
+const https = require(`https`)
 
 exports.handler = ({ headers }, context, callback) => {
-  const ip = headers[`client-ip`] || headers[`x-bb-ip`] || headers[`x-forwarded-for`]
+  const ip = headers[`client-ip`] || headers[`x-bb-ip`] || headers[`x-forwarded-for`] || `1.1.1.1`
   const language = headers[`x-language`]
 
   if (!ip)
@@ -20,13 +13,21 @@ exports.handler = ({ headers }, context, callback) => {
       }),
     })
 
-  const params = new GeolocationParams()
-  params.setIPAddress(ip)
+  https.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEOLOCATION_TOKEN}&ip=${ip}`, res => {
+    let data = ``
 
-  geolocation.getGeolocation((geo) => {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify({ ip, language, geo }),
+    res.on(`data`, chunk => {
+      data += chunk
     })
-  }, params)
+
+    res.on(`end`, () => {
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify({ ip, language, geo: JSON.parse(data) }),
+      })
+    })
+
+  }).on(`error`, err => {
+    callback(`Error: ${err.message}`)
+  })
 }
