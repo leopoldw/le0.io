@@ -4,7 +4,7 @@ import { getStatObject } from './shared'
 
 const getConnection = () => getStatObject(`connection`, `Connection`, navigator.connection.type || navigator.connection.effectiveType, navigator.connection.type || navigator.connection.effectiveType)
 
-const getPowerSource = battery => getStatObject(`power`, `Charging`, battery.charging ? `yes` : `no`, battery.charging)
+const getPowerSource = battery => getStatObject(`power`, `Charging`, battery.charging ? `yes` : `no`, battery.charging !== undefined)
 
 const getBatteryLevel = battery => getStatObject(`battery`, `Battery Level`, `${battery.level * 100}%`, battery.level)
 
