@@ -6459,6 +6459,13 @@ invert-kv@^2.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
+ip-geolocation-api-javascript-sdk@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/ip-geolocation-api-javascript-sdk/-/ip-geolocation-api-javascript-sdk-1.0.7.tgz#ea1a89b35a784ce9bf34f88d6a0b5ed25ef8ebd2"
+  integrity sha512-yzJd2Fz5Wja/0dN1rj4E1ZUK2VO9MInVxV9NHUUXLsQhUla3FiwjHBlLHfVLYkRhf3rxvpNiGF0YLslpvIXMlw==
+  dependencies:
+    xmlhttprequest "^1.8.0"
+
 ip-regex@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-1.0.3.tgz#dc589076f659f419c222039a33316f1c7387effd"
@@ -12821,6 +12828,11 @@ xmlhttprequest-ssl@~1.5.4:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
   integrity sha1-wodrBhaKrcQOV9l+gRkayPQ5iz4=
+
+xmlhttprequest@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
+  integrity sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=
 
 xregexp@4.0.0:
   version "4.0.0"
