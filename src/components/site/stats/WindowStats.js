@@ -14,7 +14,7 @@ const getTime = () => {
   }
 }
 
-const withWindowStats = () => {
+const useWindowStats = () => {
   const [windowStats, setWindowStats] = useState({
     ...getResolution(),
     ...getTime(),
@@ -45,7 +45,7 @@ const withWindowStats = () => {
 }
 
 const WindowStats = () => {
-  const stats = withWindowStats()
+  const stats = useWindowStats()
 
   return (
     <StatRenderer

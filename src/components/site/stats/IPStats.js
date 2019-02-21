@@ -3,7 +3,7 @@ import StatRenderer from '../StatRenderer'
 import { getStatObject } from './shared'
 import langlong from 'latlng-to-dms'
 
-const DEFAULT = {
+const DEFAULT_STATS = {
   ...getStatObject(`ip`, `IP Address`, false, true),
   ...getStatObject(`location`, `Location`, false, true),
   ...getStatObject(`isp`, `ISP`, false, true),
@@ -13,8 +13,8 @@ const DEFAULT = {
 const requestIPInfo = async () =>
   await fetch(`/.netlify/functions/getipinfo`).then(res => res.json())
 
-const withIPStats = () => {
-  const [IPStats, setIPStats] = useState(DEFAULT)
+const useIPStats = () => {
+  const [IPStats, setIPStats] = useState(DEFAULT_STATS)
 
   useEffect(() => {
     try {
@@ -36,7 +36,7 @@ const withIPStats = () => {
 }
 
 const IPStats = () => {
-  const stats = withIPStats()
+  const stats = useIPStats()
 
   return (
     <StatRenderer
