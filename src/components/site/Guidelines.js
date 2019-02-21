@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
+import isEqual from 'lodash/isEqual'
 
 const styles = {
   container: {
@@ -43,16 +44,61 @@ const styles = {
   },
 }
 
-const Guidelines = ({ children, disabled }) => {
+// 2 fast 2 furious
+const FLUID_QUERY_INTERVAL = 50
+
+const getPositionsFromRect = rect =>
+  rect
+    ? ({
+        left: Math.round(rect.x),
+        right: Math.round(rect.x + rect.width),
+        top: Math.round(rect.y),
+        bottom: Math.round(rect.y + rect.height),
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+      })
+    : false
+
+const useGuidelinePositions = ({ ref, fluid, hasHover }) => {
+  const [positions, setPositions] = useState(false)
+  const intervalRef = useRef()
+
+  const queryAndSetPositions = () => {
+    let rect
+    if (hasHover && ref.current)
+      rect = ref.current.getBoundingClientRect()
+
+    const newPositions = getPositionsFromRect(rect)
+
+    if (!isEqual(positions, newPositions))
+      setPositions(newPositions)
+  }
+
+  queryAndSetPositions()
+
+  useLayoutEffect(() => {
+    const clear = () => intervalRef.current && clearInterval(intervalRef.current)
+
+    if (fluid)
+      if (hasHover)
+        intervalRef.current = setInterval(queryAndSetPositions, FLUID_QUERY_INTERVAL)
+      else
+        clear()
+
+    return clear
+  }, [hasHover])
+
+  return positions
+}
+
+const Guidelines = ({ children, disabled, fluid }) => {
   if (disabled)
     return children
 
   const containerRef = useRef()
   const [hasHover, setHasHover] = useState(false)
 
-  let rect
-  if (hasHover && containerRef.current)
-    rect = containerRef.current.getBoundingClientRect()
+  const positions = useGuidelinePositions({ ref: containerRef, fluid, hasHover })
 
   return (
     <div
@@ -61,13 +107,13 @@ const Guidelines = ({ children, disabled }) => {
       onMouseLeave={() => setHasHover(false)}
       css={styles.container}
     >
-      {(hasHover && rect) && (
+      {(hasHover && positions) && (
         <>
-          <div css={styles.info}>{`${Math.round(rect.width)} x ${Math.round(rect.height)}`}</div>
-          <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${rect.x}px` }} />
-          <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${rect.x + rect.width}px` }} />
-          <div css={[styles.dottedLine, styles.horizontal]} style={{ top: `${rect.y}px` }} />
-          <div css={[styles.dottedLine, styles.horizontal]} style={{ top: `${rect.y + rect.height}px` }} />
+          <div css={styles.info}>{`${Math.round(positions.width)} x ${Math.round(positions.height)}`}</div>
+          <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${positions.left}px` }} />
+          <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${positions.right}px` }} />
+          <div css={[styles.dottedLine, styles.horizontal]} style={{ top: `${positions.top}px` }} />
+          <div css={[styles.dottedLine, styles.horizontal]} style={{ top: `${positions.bottom}px` }} />
           <div css={styles.hover} />
         </>
       )}

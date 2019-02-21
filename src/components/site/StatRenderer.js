@@ -25,9 +25,9 @@ const style = {
 }
 
 const StatRenderer = ({ stats, guidelines = true }) => (
-  stats.map(([name, value]) => (
+  stats.map(([name, value, fluid = false]) => (
     <div key={name}>
-      <Guidelines disabled={!guidelines}>
+      <Guidelines disabled={!guidelines} fluid={fluid}>
         <div css={style.text}>
           <span css={style.key}>{`${name}`}</span>
           <span css={style.value}>

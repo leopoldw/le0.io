@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import StatRenderer from '../StatRenderer'
 import { getStatObject } from './shared'
 import dateformat from 'dateformat'
@@ -10,7 +10,7 @@ const getTime = () => {
 
   return {
     ...getStatObject(`date`, `Local Date`, dateformat(date, `dS mmm, yyyy`), true),
-    ...getStatObject(`time`, `Local Time`, dateformat(date, `h:MM:ss TT`), true),
+    ...getStatObject(`time`, `Local Time`, dateformat(date, `h:MM:ss TT`), true, true),
   }
 }
 
@@ -20,7 +20,7 @@ const withWindowStats = () => {
     ...getTime(),
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const resizeWatcher = window.addEventListener(`resize`, () => {
       setWindowStats({
         ...windowStats,
