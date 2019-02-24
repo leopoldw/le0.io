@@ -9,6 +9,7 @@ import H3 from './H3'
 import Li from './Li'
 import A from './A'
 import Ul from './Ul'
+import Hr from './Hr'
 
 export default {
   code: CodeBlock,
@@ -22,5 +23,5 @@ export default {
   li: Li,
   a: A,
   ul: Ul,
-  emphasis: () => `LOL`,
+  hr: Hr,
 }

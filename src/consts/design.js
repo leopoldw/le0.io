@@ -9,6 +9,7 @@ const colors = {
   almostBlack: `#1c1c1c`,
   almostWhite: `#ffffff`,
   darkGrey: `#1d1d1d`,
+  mediumGrey: `#c0c0c0`,
   standout: `rgba(255, 255, 255, 0.3)`,
 }
 
