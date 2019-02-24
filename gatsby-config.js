@@ -23,14 +23,6 @@ module.exports = {
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-mdx`,
-      options: {
-        // gatsbyRemarkPlugins: [{
-        //   resolve: `gatsby-remark-prismjs`,
-        //   options: {
-        //     showLineNumbers: true,
-        //   },
-        // }],
-      },
     },
     {
       resolve: `gatsby-plugin-sharp`,

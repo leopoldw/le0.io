@@ -1,9 +1,8 @@
 import React from 'react'
-import { colors, sizes, borderRadii, fontSizes } from 'consts/design'
+import { colors, sizes, borderRadii } from 'consts/design'
 
 const styles = {
   container: {
-    fontSize: fontSizes.larger,
     position: `relative`,
     fontStyle: `italic`,
     background: colors.standout,

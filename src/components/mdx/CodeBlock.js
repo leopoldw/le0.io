@@ -7,7 +7,7 @@ const CSS = {
   marginTop: `0px !important`,
   marginBottom: `${sizes.paragraphSpacing}px !important`,
   borderRadius: borderRadii.medium,
-  fontSize: `20px !important`,
+  fontSize: `18px !important`,
   '& > div:last-child': {
     display: `none`,
   },

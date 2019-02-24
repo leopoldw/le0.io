@@ -7,6 +7,7 @@ import mdxComponents from 'components/mdx'
 import { colors, animationSpeeds, fontSizes } from 'consts/design'
 import MoonSVG from 'assets/moon.svg'
 import SunSVG from 'assets/sun.svg'
+import dateformat from 'dateformat'
 import ContentContainer from 'components/blog/ContentContainer'
 
 
@@ -51,7 +52,7 @@ const styles = {
     letterSpacing: `0.5px`,
   },
   articleBody: {
-    lineHeight: `1.6em`,
+    lineHeight: `1.45em`,
     letterSpacing: `1px`,
   },
   darkModeToggle: {
@@ -152,7 +153,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
 
   return (
     <RootLayout
-      title={`${frontmatter.title} - le0.io`}
+      title={frontmatter.title}
       description={frontmatter.description}
       backgroundColor={getCSS(`backgroundColor`, darkMode)}
     >
@@ -167,13 +168,12 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
           <div css={getCSS(`pageHeader`)}>
             <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
             <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
-            <div css={getCSS(`name`, darkMode)}>Leopold Wicht</div>
           </div>
           <main>
             <article css={getCSS(`article`, darkMode)}>
               <header css={getCSS(`articleHeader`)}>
                 <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
-                <div css={getCSS(`subheading`)}>{`${frontmatter.date} - ${timeToRead} min read`}</div>
+                <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
               </header>
               <div css={getCSS(`articleBody`, darkMode)}>
                 <MDXRenderer>{code.body}</MDXRenderer>

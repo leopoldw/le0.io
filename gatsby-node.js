@@ -5,12 +5,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // add page for each blog node
   if (node.internal.type === `Mdx`) {
     const filePath = createFilePath({ node, getNode, basePath: `./posts` })
-    const fileName = filePath.split(`/`)[2]
+    const slug = filePath.split(`/`)[1]
 
     actions.createNodeField({
       node,
       name: `slug`,
-      value: `/posts/${fileName}`,
+      value: `/posts/${slug}`,
     })
   }
 
