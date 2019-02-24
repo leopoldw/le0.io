@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createContext } from 'react'
 import { graphql } from 'gatsby'
 import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
@@ -123,6 +123,7 @@ const getCSS = (key, darkMode) => [
 
 // special helper to reduce boilerplate
 // for dark mode styling
+const DarkModeContext = React.createContext()
 const DARK_MODE_STORAGE_KEY = `DARK_MODE`
 const withDarkMode = () => {
   const hasLocalStorage = typeof window === `object` && `localStorage` in window
@@ -152,37 +153,39 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
   const { darkMode, toggleDarkMode } = withDarkMode()
 
   return (
-    <RootLayout
-      title={frontmatter.title}
-      description={frontmatter.description}
-      backgroundColor={getCSS(`backgroundColor`, darkMode)}
-    >
-      <MDXProvider components={mdxComponents}>
-        <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
-          <div css={getCSS(`darkModeInner`)}>
-            <MoonSVG css={[getCSS(`SVG`, darkMode), darkMode && getCSS(`SVGHidden`, darkMode)]} />
-            <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
+    <DarkModeContext.Provider value={{ darkMode }}>
+      <RootLayout
+        title={frontmatter.title}
+        description={frontmatter.description}
+        backgroundColor={getCSS(`backgroundColor`, darkMode)}
+      >
+        <MDXProvider components={mdxComponents}>
+          <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
+            <div css={getCSS(`darkModeInner`)}>
+              <MoonSVG css={[getCSS(`SVG`, darkMode), darkMode && getCSS(`SVGHidden`, darkMode)]} />
+              <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
+            </div>
           </div>
-        </div>
-        <ContentContainer>
-          <div css={getCSS(`pageHeader`)}>
-            <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
-            <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
-          </div>
-          <main>
-            <article css={getCSS(`article`, darkMode)}>
-              <header css={getCSS(`articleHeader`)}>
-                <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
-                <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
-              </header>
-              <div css={getCSS(`articleBody`, darkMode)}>
-                <MDXRenderer>{code.body}</MDXRenderer>
-              </div>
-            </article>
-          </main>
-        </ContentContainer>
-      </MDXProvider>
-    </RootLayout>
+          <ContentContainer>
+            <div css={getCSS(`pageHeader`)}>
+              <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
+              <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
+            </div>
+            <main>
+              <article css={getCSS(`article`, darkMode)}>
+                <header css={getCSS(`articleHeader`)}>
+                  <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
+                  <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
+                </header>
+                <div css={getCSS(`articleBody`, darkMode)}>
+                  <MDXRenderer>{code.body}</MDXRenderer>
+                </div>
+              </article>
+            </main>
+          </ContentContainer>
+        </MDXProvider>
+      </RootLayout>
+    </DarkModeContext.Provider>
   )
 }
 
@@ -214,3 +217,4 @@ export const pageQuery = graphql`
 `
 
 export default Post
+export { DarkModeContext }
