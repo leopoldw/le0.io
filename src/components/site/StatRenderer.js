@@ -1,13 +1,19 @@
 import React from 'react'
 import Guidelines from './Guidelines'
-import { fontSizes } from 'consts/design'
+import { fontSizes, mediaQueries } from 'consts/design'
 
+console.log(mediaQueries)
 const style = {
   text: {
     color: `white`,
     lineHeight: `1.2em`,
     letterSpacing: 0.5,
     fontSize: fontSizes.smaller,
+    whiteSpace: `nowrap`,
+    overflow: `hidden`,
+    [mediaQueries.tablet]: {
+      fontSize: fontSizes.subtext,
+    },
   },
   key: {
     fontWeight: `600`,

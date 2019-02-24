@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { colors } from 'consts/design'
+import { colors, mediaQueries, borderRadii } from 'consts/design'
 import RootLayout from 'rootLayout'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
@@ -9,8 +9,6 @@ import IPStats from 'components/site/stats/IPStats'
 import WindowStats from 'components/site/stats/WindowStats'
 import NavigatorStats from 'components/site/stats/NavigatorStats'
 import Button from 'components/site/Button'
-
-const STAT_OFFSET = 10
 
 const styles = {
   container: {
@@ -24,6 +22,17 @@ const styles = {
     height: `100%`,
     justifyContent: `center`,
     alignItems: `center`,
+  },
+  headerWrapper: {
+    padding: 20,
+    [mediaQueries.mobile]: {
+      background: colors.mediumBlueTransparent,
+      margin: 20,
+      borderRadius: borderRadii.medium,
+      zIndex: 10,
+      // one day...
+      backdropFilter: `blur(5px)`,
+    },
   },
   header: {
     color: colors.yellow,
@@ -42,27 +51,40 @@ const styles = {
   buttonContainer: {
     marginTop: 20,
   },
-  statsTopRightPosition: {
-    position: `fixed`,
-    top: STAT_OFFSET,
-    right: STAT_OFFSET,
+  statsContainer: {
+    display: `flex`,
+    width: `100%`,
+    position: `absolute`,
+    justifyContent: `space-between`,
+    padding: 10,
+    boxSizing: `border-box`,
+    [mediaQueries.tablet]: {
+      flexDirection: `column`,
+    },
+  },
+  statsContainerTop: {
+    top: 0,
+  },
+  statsContainerBottom: {
+    bottom: 0,
+  },
+  topLeft: {},
+  topRight: {
     textAlign: `right`,
+    [mediaQueries.tablet]: {
+      textAlign: `left`,
+    },
   },
-  statsTopLeftPosition: {
-    position: `fixed`,
-    top: STAT_OFFSET,
-    left: STAT_OFFSET,
+  bottomLeft: {
+    alignSelf: `flex-end`,
+    textAlign: `left`,
+    [mediaQueries.tablet]: {
+      textAlign: `right`,
+    },
   },
-  statsBottomRightPosition: {
-    position: `fixed`,
-    bottom: STAT_OFFSET,
-    right: STAT_OFFSET,
+  bottomRight: {
+    alignSelf: `flex-end`,
     textAlign: `right`,
-  },
-  statsBottomLeftPosition: {
-    position: `fixed`,
-    bottom: STAT_OFFSET,
-    left: STAT_OFFSET,
   },
 }
 
@@ -70,7 +92,7 @@ const IndexPage = () => (
   <RootLayout>
     <div css={styles.container}>
       <div css={styles.headerPosition}>
-        <div>
+        <div css={styles.headerWrapper}>
           <Guidelines>
             <h1 css={styles.header}>Leopold Wicht</h1>
           </Guidelines>
@@ -84,17 +106,21 @@ const IndexPage = () => (
           </div>
         </div>
       </div>
-      <div css={styles.statsTopRightPosition}>
-        <UAStats />
-      </div>
-      <div css={styles.statsTopLeftPosition}>
+    </div>
+    <div css={[styles.statsContainer, styles.statsContainerTop]}>
+      <div css={styles.topLeft}>
         <IPStats />
       </div>
-      <div css={styles.statsBottomRightPosition}>
-        <NavigatorStats />
+      <div css={styles.topRight}>
+        <UAStats />
       </div>
-      <div css={styles.statsBottomLeftPosition}>
+    </div>
+    <div css={[styles.statsContainer, styles.statsContainerBottom]}>
+      <div css={styles.bottomLeft}>
         <WindowStats />
+      </div>
+      <div css={styles.bottomRight}>
+        <NavigatorStats />
       </div>
     </div>
     <MouseFollower />

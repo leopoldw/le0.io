@@ -4,6 +4,9 @@ import StatRenderer from '../StatRenderer'
 import { getStatObject } from './shared'
 
 const UAStats = () => {
+  if (typeof navigator === `undefined`)
+    return null
+
   const UA = UAParser(navigator.userAgent)
 
   const stats = {

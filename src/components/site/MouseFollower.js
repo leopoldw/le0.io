@@ -5,7 +5,7 @@ const css = {
   position: `fixed`,
 }
 
-const OFFSET = 12
+const OFFSET = 15
 
 const MouseFollower = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })

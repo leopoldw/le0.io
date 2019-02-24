@@ -1,6 +1,7 @@
 const colors = {
   darkBlue: `#00207f`,
   mediumBlue: `#00528b`,
+  mediumBlueTransparent: `rgba(0, 82, 139, 1)`,
   yellow: `#fff600`,
   lightYellow: `#fff7e9`,
   almostBlack: `#1c1c1c`,
@@ -31,4 +32,16 @@ const borderRadii = {
   medium: 10,
 }
 
-export { colors, sizes, animationSpeeds, borderRadii, fontSizes }
+const breakpoints = {
+  tablet: 800,
+  mobile: 400,
+}
+
+const mediaQueries = Object
+  .entries(breakpoints)
+  .reduce((acc, [key, width]) => ({
+    ...acc,
+    [key]: `@media (max-width: ${width}px)`,
+  }), {})
+
+export { colors, sizes, animationSpeeds, borderRadii, fontSizes, breakpoints, mediaQueries }
