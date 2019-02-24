@@ -16,6 +16,7 @@ const colors = {
 const sizes = {
   contentMaxWidth: 800,
   paragraphSpacing: 40,
+  headerSpacing: 20,
 }
 
 // root is 22px
