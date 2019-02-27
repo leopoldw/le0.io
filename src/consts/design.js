@@ -5,12 +5,13 @@ const colors = {
   mediumBlueTransparent: `rgba(0, 82, 139, 1)`,
   yellow: `#fff600`,
   lightYellow: `#fff7e9`,
-  lightYellowOffset: `#fff1d8`,
+  mediumYellow: `#fff1d8`,
   almostBlack: `#1c1c1c`,
-  almostWhite: `#ffffff`,
+  almostWhite: `#fffbf3`,
   darkGrey: `#1d1d1d`,
   mediumGrey: `#c0c0c0`,
-  standout: `rgba(255, 255, 255, 0.3)`,
+  standout: `rgba(255, 255, 255, 0.2)`,
+  standoutSubtle: `rgba(255, 255, 255, 0.05)`,
 }
 
 const sizes = {

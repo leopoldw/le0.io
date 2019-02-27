@@ -6,6 +6,7 @@ summary: Recompose is dead. Long live Recompose.
 ---
 import Aside from '../../src/components/blog/Aside'
 import InlineCode from '../../src/components/mdx/InlineCode'
+import LazyImage from '../../src/components/blog/LazyImage'
 
 When [Recompose](https://github.com/acdlite/recompose) announced shortly after the announcement of [React Hooks](https://reactjs.org/docs/hooks-intro.html) that it would cease active new feature development (although in reality no new features had been released for a while), things began to make sense. As per a note from core developer [Andrew Clark](https://twitter.com/acdlite):
 
@@ -85,7 +86,7 @@ Some HOCs supplied by Recompose suffered from the inverse issue. Enhancers such 
 
 Additionally, as each enhancer was a component, React Devtools could easily become a cluttered mess. A single inner component wrapped in numerous enhancers could create an unwieldly, massive component tree internally - often displayed as something adjacent to [callback hell](http://callbackhell.com/). This made debugging in Devtools painful and difficult.
 
-// TODO: pic of devtools
+<LazyImage fileName="devtoolsrecompose.png" caption="Check out the catchy component names too!" />
 
 Hooks manages to address these issues elegantly by themselves being simple functions instead of full React components. They don't contain any `render` functionality, because they don't need to. Instead, they simply supply React components with _something_ they need, usually in the form of a simple JavaScript primative or object. It's up to the parent component to use the returned values as they please.
 

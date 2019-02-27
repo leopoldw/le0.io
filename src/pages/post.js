@@ -149,6 +149,8 @@ const withDarkMode = () => {
   }
 }
 
+// TODO: investigate component rerendering on darkmode change
+
 const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childImageSharp } } }) => {
   const { darkMode, toggleDarkMode } = withDarkMode()
 

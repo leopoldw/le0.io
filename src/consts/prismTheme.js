@@ -1,7 +1,9 @@
+import { colors } from 'consts/design'
+
 const theme = {
   plain: {
     color: `#D4D4D4`,
-    backgroundColor: `#1E1E1E`,
+    backgroundColor: colors.darkGrey,
   },
   styles: [
     {
