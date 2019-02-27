@@ -21,6 +21,10 @@ const styles = {
     fontSize: 80,
     fontFamily: `Archery Black`,
   },
+  siteTitleSmall: {
+    fontSize: 40,
+    fontFamily: `Archery Black`,
+  },
   name: {
     fontSize: 30,
     fontFamily: `Archery Black`,
@@ -32,10 +36,11 @@ const styles = {
     borderRadius: `100%`,
     backgroundPosition: `center center`,
     backgroundSize: `cover`,
-    // margin: `0 auto`,
+    marginBottom: 10,
   },
   article: {
     transition: `color ${animationSpeeds.normal}ms linear`,
+    marginBottom: 120,
   },
   articleHeader: {
     marginBottom: 50,
@@ -85,11 +90,18 @@ const styles = {
   SVGHidden: {
     transform: `rotateX(-180deg)`,
   },
+  blogFooterDescription: {
+    marginTop: 5,
+    color: colors.darkBlue,
+  },
 }
 
 const lightStyles = {
   backgroundColor: colors.lightYellow,
   siteTitle: {
+    color: colors.darkBlue,
+  },
+  siteTitleSmall: {
     color: colors.darkBlue,
   },
   name: {
@@ -105,6 +117,9 @@ const darkStyles = {
   siteTitle: {
     color: colors.yellow,
   },
+  siteTitleSmall: {
+    color: colors.yellow,
+  },
   name: {
     color: colors.yellow,
   },
@@ -113,6 +128,9 @@ const darkStyles = {
   },
   SVG: {
     color: `white`,
+  },
+  blogFooterDescription: {
+    color: colors.yellow,
   },
 }
 
@@ -123,7 +141,7 @@ const getCSS = (key, darkMode) => [
 
 // special helper to reduce boilerplate
 // for dark mode styling
-const DarkModeContext = React.createContext()
+const DarkModeContext = createContext()
 const DARK_MODE_STORAGE_KEY = `DARK_MODE`
 const withDarkMode = () => {
   const hasLocalStorage = typeof window === `object` && `localStorage` in window
@@ -150,6 +168,9 @@ const withDarkMode = () => {
 }
 
 // TODO: investigate component rerendering on darkmode change
+// TODO: add post back link
+// TODO: add post edit link
+// TODO: add contact link
 
 const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childImageSharp } } }) => {
   const { darkMode, toggleDarkMode } = withDarkMode()
@@ -161,31 +182,36 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
         description={frontmatter.description}
         backgroundColor={getCSS(`backgroundColor`, darkMode)}
       >
-        <MDXProvider components={mdxComponents}>
-          <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
-            <div css={getCSS(`darkModeInner`)}>
-              <MoonSVG css={[getCSS(`SVG`, darkMode), darkMode && getCSS(`SVGHidden`, darkMode)]} />
-              <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
-            </div>
+        <div css={getCSS(`darkModeToggle`)} onClick={toggleDarkMode}>
+          <div css={getCSS(`darkModeInner`)}>
+            <MoonSVG css={[getCSS(`SVG`, darkMode), darkMode && getCSS(`SVGHidden`, darkMode)]} />
+            <SunSVG css={[getCSS(`SVG`, darkMode), !darkMode && getCSS(`SVGHidden`, darkMode)]} />
           </div>
-          <ContentContainer>
-            <div css={getCSS(`pageHeader`)}>
-              <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
-              <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
-            </div>
-            <main>
-              <article css={getCSS(`article`, darkMode)}>
-                <header css={getCSS(`articleHeader`)}>
-                  <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
-                  <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
-                </header>
-                <div css={getCSS(`articleBody`, darkMode)}>
+        </div>
+        <ContentContainer>
+          <header css={getCSS(`pageHeader`)}>
+            <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
+            <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
+          </header>
+          <main>
+            <article css={getCSS(`article`, darkMode)}>
+              <header css={getCSS(`articleHeader`)}>
+                <h1 css={getCSS(`heading`)}>{frontmatter.title}</h1>
+                <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
+              </header>
+              <div css={getCSS(`articleBody`, darkMode)}>
+                <MDXProvider components={mdxComponents}>
                   <MDXRenderer>{code.body}</MDXRenderer>
-                </div>
-              </article>
-            </main>
-          </ContentContainer>
-        </MDXProvider>
+                </MDXProvider>
+              </div>
+            </article>
+          </main>
+          <footer>
+            <div css={getCSS(`avatar`, darkMode)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
+            <div css={getCSS(`siteTitleSmall`, darkMode)}>le0.io</div>
+            <div css={getCSS(`blogFooterDescription`, darkMode)}>Front End blog by Leopold Wicht</div>
+          </footer>
+        </ContentContainer>
       </RootLayout>
     </DarkModeContext.Provider>
   )
