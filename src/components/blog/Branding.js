@@ -1,10 +1,12 @@
 import React from 'react'
 import useDarkMode from 'hooks/useDarkMode'
-import { useStaticQuery, graphql } from 'gatsby'
-
-console.log(useStaticQuery, graphql)
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import { colors, fontSizes } from 'consts/design'
 
 const style = {
+  link: {
+    textDecoration: `none`,
+  },
   avatar: {
     width: 50,
     height: 50,
@@ -13,37 +15,57 @@ const style = {
     backgroundSize: `cover`,
     marginBottom: 10,
   },
+  text: {
+    color: colors.darkBlue,
+  },
+  textDark: {
+    color: colors.yellow,
+  },
+  logo: {
+    fontFamily: `Archery Black`,
+  },
+  logoLarge: {
+    fontSize: 80,
+  },
+  logoSmall: {
+    fontSize: 40,
+  },
+  description: {
+    fontSize: fontSizes.smaller,
+    marginTop: 5,
+  },
 }
 
 const useAvatar = () => {
-  // const data = useStaticQuery(graphql`
-  //   query AvatarQuery {
-  //     file(name: { eq: "leo" }, extension: { eq: "png" }) {
-  //       childImageSharp {
-  //         id
-  //         fixed(width: 100, height: 100, quality: 75) {
-  //           base64
-  //           src
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+  const data = useStaticQuery(graphql`
+    query AvatarQuery {
+      file(name: { eq: "leo" }, extension: { eq: "png" }) {
+        childImageSharp {
+          id
+          fixed(width: 100, height: 100, quality: 75) {
+            base64
+            src
+          }
+        }
+      }
+    }
+  `)
 
-  // console.log(data)
-  // return data.childImageSharp.fixed.src
+  return data.file.childImageSharp.fixed.src
 }
 
-const Branding = ({ theme }) => {
+const Branding = ({ smaller }) => {
   const avatar = useAvatar()
   const darkMode = useDarkMode()
 
   return (
-    <>
+    <Link to="/" css={style.link}>
       <div css={style.avatar} style={{ backgroundImage: `url(${avatar})` }} />
-      <div css={{}}>le0.io</div>
-      <div css={{}}>Front End blog by Leopold Wicht</div>
-    </>
+      <div css={[style.text, darkMode && style.textDark, style.logo, smaller ? style.logoSmall : style.logoLarge]}>le0.io</div>
+      { smaller &&
+        <div css={[style.text, darkMode && style.textDark, style.description]}>Front End blog by Leopold Wicht</div>
+      }
+    </Link>
   )
 }
 

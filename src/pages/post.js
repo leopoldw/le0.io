@@ -17,19 +17,6 @@ const styles = {
     marginTop: 60,
     marginBottom: 100,
   },
-  siteTitle: {
-    fontSize: 80,
-    fontFamily: `Archery Black`,
-  },
-  siteTitleSmall: {
-    fontSize: 40,
-    fontFamily: `Archery Black`,
-  },
-  name: {
-    fontSize: 30,
-    fontFamily: `Archery Black`,
-    letterSpacing: `1px`,
-  },
   article: {
     transition: `color ${animationSpeeds.normal}ms linear`,
     marginBottom: 120,
@@ -82,24 +69,10 @@ const styles = {
   SVGHidden: {
     transform: `rotateX(-180deg)`,
   },
-  blogFooterDescription: {
-    marginTop: 5,
-    color: colors.darkBlue,
-    fontSize: fontSizes.smaller,
-  },
 }
 
 const lightStyles = {
   backgroundColor: colors.lightYellow,
-  siteTitle: {
-    color: colors.darkBlue,
-  },
-  siteTitleSmall: {
-    color: colors.darkBlue,
-  },
-  name: {
-    color: colors.darkBlue,
-  },
   article: {
     color: colors.almostBlack,
   },
@@ -107,20 +80,11 @@ const lightStyles = {
 
 const darkStyles = {
   backgroundColor: colors.darkGrey,
-  siteTitle: {
-    color: colors.yellow,
-  },
-  siteTitleSmall: {
-    color: colors.yellow,
-  },
-  name: {
-    color: colors.yellow,
-  },
   article: {
     color: colors.almostWhite,
   },
   SVG: {
-    color: `white`,
+    color: colors.almostWhite,
   },
   blogFooterDescription: {
     color: colors.yellow,
@@ -189,7 +153,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
         </div>
         <ContentContainer>
           <header css={getCSS(`pageHeader`)}>
-            <Branding theme="header" />
+            <Branding />
           </header>
           <main>
             <article css={getCSS(`article`, darkMode)}>
@@ -203,7 +167,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
             </article>
           </main>
           <footer>
-            <Branding theme="footer" />
+            <Branding smaller />
           </footer>
         </ContentContainer>
       </RootLayout>

@@ -29,8 +29,6 @@ const styles = {
     [mediaQueries.mobile]: {
       margin: 20,
       zIndex: 10,
-      // one day...
-      backdropFilter: `blur(5px)`,
     },
   },
   header: {
