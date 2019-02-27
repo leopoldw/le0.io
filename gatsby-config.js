@@ -7,11 +7,6 @@ if (isDev)
   })
 
 module.exports = {
-  siteMetadata: {
-    title: `Leopold W Site`,
-    description: `Leopold W Description`,
-    author: `leopoldw`,
-  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,

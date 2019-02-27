@@ -3,7 +3,12 @@ import StatRenderer from '../StatRenderer'
 import { getStatObject, convertObjectToOrderedArray } from './shared'
 import dateformat from 'dateformat'
 
-const getResolution = () => getStatObject(`size`, `Resolution`, `${window.innerWidth}x${window.innerHeight}`, true)
+const getResolution = () => {
+  if (typeof window === `undefined`)
+    return {}
+
+    return getStatObject(`size`, `Resolution`, `${window.innerWidth}x${window.innerHeight}`, true)
+}
 
 const getTime = () => {
   const date = new Date()

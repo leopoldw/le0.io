@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { colors, mediaQueries, borderRadii } from 'consts/design'
+import { colors, mediaQueries } from 'consts/design'
 import RootLayout from 'rootLayout'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
@@ -27,9 +27,7 @@ const styles = {
   headerWrapper: {
     padding: 20,
     [mediaQueries.mobile]: {
-      background: colors.mediumBlueTransparent,
       margin: 20,
-      borderRadius: borderRadii.medium,
       zIndex: 10,
       // one day...
       backdropFilter: `blur(5px)`,
@@ -41,16 +39,28 @@ const styles = {
     fontSize: 100,
     margin: 0,
     lineHeight: `1.2em`,
+    [mediaQueries.mobile]: {
+      fontSize: 80,
+    },
   },
   subheader: {
     color: colors.yellow,
     fontSize: 40,
     lineHeight: `1.2em`,
+    [mediaQueries.mobile]: {
+      fontSize: 30,
+    },
   },
   buttonContainer: {
     marginTop: 20,
     '& > a': {
       marginRight: 15,
+    },
+    [mediaQueries.mobile]: {
+      '& > a': {
+        display: `block`,
+        marginBottom: 10,
+      },
     },
   },
   statsContainer: {
@@ -62,6 +72,9 @@ const styles = {
     boxSizing: `border-box`,
     [mediaQueries.tablet]: {
       flexDirection: `column`,
+    },
+    [mediaQueries.mobile]: {
+      display: `none`,
     },
   },
   statsContainerTop: {
@@ -110,7 +123,8 @@ const IndexPage = () => (
           <div css={styles.buttonContainer}>
             <Button to="/posts">See All Posts</Button>
             <Button href="https://www.linkedin.com/in/leowicht/">LinkedIn</Button>
-            <Button to="/posts">Contact</Button>
+            {/* <Button to="/posts">Contact</Button> */}
+            {/* TODO: add contact  */}
           </div>
         </div>
       </div>

@@ -3,6 +3,9 @@ import StatRenderer from '../StatRenderer'
 import { getStatObject, convertObjectToOrderedArray } from './shared'
 
 const getConnection = () => {
+  if (typeof navigator === `undefined`)
+    return {}
+
   const { connection = {} } = navigator
 
   return getStatObject(`connection`, `Connection`, connection.type || connection.effectiveType, connection &&connection.type || connection.effectiveType)
@@ -12,7 +15,12 @@ const getPowerSource = battery => getStatObject(`power`, `Charging`, battery.cha
 
 const getBatteryLevel = battery => getStatObject(`battery`, `Battery Level`, `${Math.round(battery.level * 100)}%`, battery.level)
 
-const getCPU = () => getStatObject(`cpu`, `CPU Cores`, navigator.hardwareConcurrency, navigator.hardwareConcurrency)
+const getCPU = () => {
+  if (typeof navigator === `undefined`)
+    return {}
+
+  return getStatObject(`cpu`, `CPU Cores`, navigator.hardwareConcurrency, navigator.hardwareConcurrency)
+}
 
 // https://gist.github.com/cvan/042b2448fcecefafbb6a91469484cdf8
 const getGPU = () => {

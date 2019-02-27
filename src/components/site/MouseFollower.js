@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import StatRenderer from './StatRenderer'
+import { mediaQueries } from 'consts/design'
 
 const css = {
   position: `fixed`,
+  [mediaQueries.mobile]: {
+    display: `none`,
+  },
 }
 
 const OFFSET = 15

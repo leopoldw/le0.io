@@ -1,8 +1,6 @@
 const colors = {
   darkBlue: `#00207f`,
   mediumBlue: `#00528b`,
-  // todo: remove this
-  mediumBlueTransparent: `rgba(0, 82, 139, 1)`,
   yellow: `#fff600`,
   lightYellow: `#fff7e9`,
   mediumYellow: `#fff1d8`,

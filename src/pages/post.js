@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import Branding from 'components/blog/Branding'
 import mdxComponents from 'components/mdx'
 import { colors, animationSpeeds, fontSizes } from 'consts/design'
 import MoonSVG from 'assets/moon.svg'
@@ -15,7 +16,6 @@ const styles = {
   pageHeader: {
     marginTop: 60,
     marginBottom: 100,
-    // textAlign: `center`,
   },
   siteTitle: {
     fontSize: 80,
@@ -29,14 +29,6 @@ const styles = {
     fontSize: 30,
     fontFamily: `Archery Black`,
     letterSpacing: `1px`,
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: `100%`,
-    backgroundPosition: `center center`,
-    backgroundSize: `cover`,
-    marginBottom: 10,
   },
   article: {
     transition: `color ${animationSpeeds.normal}ms linear`,
@@ -179,7 +171,7 @@ const PostContent = memo(({ body }) => (
   </MDXProvider>
 ))
 
-const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childImageSharp } } }) => {
+const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
   const { darkMode, toggleDarkMode } = withDarkMode()
 
   return (
@@ -197,8 +189,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
         </div>
         <ContentContainer>
           <header css={getCSS(`pageHeader`)}>
-            <div css={getCSS(`avatar`)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
-            <div css={getCSS(`siteTitle`, darkMode)}>le0.io</div>
+            <Branding theme="header" />
           </header>
           <main>
             <article css={getCSS(`article`, darkMode)}>
@@ -212,9 +203,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
             </article>
           </main>
           <footer>
-            <div css={getCSS(`avatar`, darkMode)} style={{ backgroundImage: `url(${childImageSharp.fixed.src})` }} />
-            <div css={getCSS(`siteTitleSmall`, darkMode)}>le0.io</div>
-            <div css={getCSS(`blogFooterDescription`, darkMode)}>Front End blog by Leopold Wicht</div>
+            <Branding theme="footer" />
           </footer>
         </ContentContainer>
       </RootLayout>
@@ -234,15 +223,6 @@ export const pageQuery = graphql`
       }
       code {
         body
-      }
-    }
-    file(name: { eq: "leo" }, extension: { eq: "png" }) {
-      childImageSharp {
-        id
-        fixed(width: 100, height: 100, quality: 75) {
-          base64
-          src
-        }
       }
     }
   }
