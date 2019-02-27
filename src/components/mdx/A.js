@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { colors } from 'consts/design'
-import { DarkModeContext } from 'pages/post'
+import React from 'react'
+import { colors, animationSpeeds } from 'consts/design'
+import useDarkMode from 'hooks/useDarkMode'
 
 const style = {
   default: {
     color: colors.darkBlue,
+    transition: `color ${animationSpeeds.normal}ms linear`,
     '&:hover': {
       textDecoration: `none`,
     },
@@ -15,7 +16,7 @@ const style = {
 }
 
 const A = props => {
-  const { darkMode } = useContext(DarkModeContext)
+  const darkMode = useDarkMode()
 
   return (
     <a css={[style.default, darkMode && style.darkMode]} target="_blank" {...props} />

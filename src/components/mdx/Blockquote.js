@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { colors, sizes, borderRadii } from 'consts/design'
-import { DarkModeContext } from 'pages/post'
+import React from 'react'
+import { colors, sizes, borderRadii, animationSpeeds } from 'consts/design'
+import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
   container: {
@@ -10,11 +10,13 @@ const styles = {
     borderRadius: borderRadii.small,
     padding: 15,
     marginBottom: sizes.paragraphSpacing,
+    transition: `background ${animationSpeeds.normal}ms linear`,
     '& p:last-child': {
       marginBottom: 0,
     },
   },
   bookmark: {
+    transition: `background ${animationSpeeds.normal}ms linear`,
     width: 5,
     height: `100%`,
     background: colors.darkBlue,
@@ -32,7 +34,7 @@ const styles = {
 }
 
 const Blockquote = ({ children }) => {
-  const { darkMode } = useContext(DarkModeContext)
+  const darkMode = useDarkMode()
 
   return (
     <div css={[styles.container, darkMode && styles.containerDark]}>

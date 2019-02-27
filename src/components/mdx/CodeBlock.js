@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { sizes, borderRadii, colors } from 'consts/design'
 import theme from 'consts/prismTheme'
-import { DarkModeContext } from 'pages/post'
+import useDarkMode from 'hooks/useDarkMode'
 
 // mdx always inserts an empty token at the end it seems
 const css = {
@@ -31,8 +31,7 @@ const css = {
 
 
 const CodeBlock = ({ className: lang = ``, children }) => {
-  const { darkMode } = useContext(DarkModeContext)
-
+  const darkMode = useDarkMode()
   return (
     <Highlight {...defaultProps} theme={theme} code={children} language="jsx">
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

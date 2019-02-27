@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { sizes, colors } from 'consts/design'
-import { DarkModeContext } from 'pages/post'
+import useDarkMode from 'hooks/useDarkMode'
 
 const style = {
   default: {
@@ -14,7 +14,7 @@ const style = {
 }
 
 const Hr = props => {
-  const { darkMode } = useContext(DarkModeContext)
+  const darkMode = useDarkMode()
   return (
     <hr css={[style.default, darkMode && style.dark]} {...props} />
   )

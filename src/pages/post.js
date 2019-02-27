@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from 'react'
+import React, { useState, useEffect, createContext, memo } from 'react'
 import { graphql } from 'gatsby'
 import RootLayout from 'rootLayout'
 import { MDXProvider } from '@mdx-js/tag'
@@ -93,6 +93,7 @@ const styles = {
   blogFooterDescription: {
     marginTop: 5,
     color: colors.darkBlue,
+    fontSize: fontSizes.smaller,
   },
 }
 
@@ -167,10 +168,16 @@ const withDarkMode = () => {
   }
 }
 
-// TODO: investigate component rerendering on darkmode change
 // TODO: add post back link
 // TODO: add post edit link
 // TODO: add contact link
+
+// expensive operation, so memoize inner component
+const PostContent = memo(({ body }) => (
+  <MDXProvider components={mdxComponents}>
+    <MDXRenderer>{body}</MDXRenderer>
+  </MDXProvider>
+))
 
 const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childImageSharp } } }) => {
   const { darkMode, toggleDarkMode } = withDarkMode()
@@ -200,9 +207,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code }, file: { childIma
                 <div css={getCSS(`subheading`)}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
               </header>
               <div css={getCSS(`articleBody`, darkMode)}>
-                <MDXProvider components={mdxComponents}>
-                  <MDXRenderer>{code.body}</MDXRenderer>
-                </MDXProvider>
+                <PostContent body={code.body} />
               </div>
             </article>
           </main>

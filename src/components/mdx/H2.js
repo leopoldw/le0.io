@@ -1,7 +1,7 @@
-import React, { useRef, useContext } from 'react'
-import { fontSizes, sizes, colors } from 'consts/design'
+import React, { useRef } from 'react'
+import { fontSizes, sizes, colors, animationSpeeds } from 'consts/design'
 import LinkSVG from 'assets/link.svg'
-import { DarkModeContext } from 'pages/post'
+import useDarkMode from 'hooks/useDarkMode'
 
 
 const style = {
@@ -27,6 +27,7 @@ const style = {
     ':hover': {
       opacity: 1,
     },
+    transition: `color ${animationSpeeds.normal}ms linear`,
   },
   linkLight: {
     color: colors.darkBlue,
@@ -64,7 +65,7 @@ const useUniqueIdForChild = children => {
 
 const H2 = ({ children, ...rest }) => {
   const id = useUniqueIdForChild(children)
-  const { darkMode } = useContext(DarkModeContext)
+  const darkMode = useDarkMode()
 
   return (
     <h2 css={style.header} id={id} name={id} {...rest}>

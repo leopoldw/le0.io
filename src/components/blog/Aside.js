@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { colors, fontSizes, sizes, borderRadii } from 'consts/design'
+import React from 'react'
+import useDarkMode from 'hooks/useDarkMode'
+import { colors, fontSizes, sizes, borderRadii, animationSpeeds } from 'consts/design'
 import RightChevron from 'assets/chevrons-right.svg'
-import { DarkModeContext } from 'pages/post'
 
 const style = {
   container: {
@@ -13,12 +13,14 @@ const style = {
     paddingLeft: 40,
     borderRadius: borderRadii.medium,
     position: `relative`,
+    transition: `background ${animationSpeeds.normal}ms linear`,
   },
   containerDark: {
     background: colors.standoutSubtle,
   },
   SVG: {
     color: colors.darkBlue,
+    transition: `color ${animationSpeeds.normal}ms linear`,
     position: `absolute`,
     top: 12,
     left: 10,
@@ -29,7 +31,7 @@ const style = {
 }
 
 const Aside = ({ children }) => {
-  const { darkMode } = useContext(DarkModeContext)
+  const darkMode = useDarkMode()
   return (
     <div css={[style.container, darkMode && style.containerDark]}>
       <RightChevron css={[style.SVG, darkMode && style.SVGDark]} />
