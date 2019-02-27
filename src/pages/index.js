@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { colors, mediaQueries } from 'consts/design'
-import RootLayout from 'rootLayout'
+// import PageConfig from '../PageConfig'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
 import UAStats from 'components/site/stats/UAStats'
@@ -102,7 +102,7 @@ const styles = {
 }
 
 const IndexPage = () => (
-  <RootLayout>
+  <>
     <div css={styles.container}>
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>
@@ -144,7 +144,7 @@ const IndexPage = () => (
       </div>
     </div>
     <MouseFollower />
-  </RootLayout>
+  </>
 )
 
 export default IndexPage

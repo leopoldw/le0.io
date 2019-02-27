@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 import emotionReset from 'emotion-reset'
 import { Global, css } from '@emotion/core'
-import ReactHelmet from 'react-helmet'
 import fonts from './fonts'
-import { animationSpeeds } from 'consts/design'
+import { animationSpeeds, colors } from 'consts/design'
+import MoonSVG from 'assets/moon.svg'
+import SunSVG from 'assets/sun.svg'
 
 const styles = {
   global: {
@@ -32,20 +33,80 @@ const styles = {
     width: `100%`,
     height: `100%`,
   },
+  darkModeToggle: {
+    position: `fixed`,
+    right: 10,
+    top: 10,
+    width: 40,
+    height: 40,
+    cursor: `pointer`,
+    opacity: 0.5,
+    '&: hover': {
+      opacity: 1,
+    },
+  },
+  darkModeInner: {
+    display: `relative`,
+    '& > svg': {
+      width: `100%`,
+      height: `100%`,
+    },
+  },
+  SVG: {
+    transition: `transform ${animationSpeeds.normal}ms linear`,
+    backfaceVisibility: `hidden`,
+    position: `absolute`,
+    top: 0,
+    left: 0,
+  },
+  SVGSun: {
+    color: colors.almostBlack,
+  },
+  SVGMoon: {
+    color: colors.almostWhite,
+  },
+  SVGHidden: {
+    transform: `rotateX(-180deg)`,
+  },
 }
 
-const RootLayout = ({ children, title, description, backgroundColor }) => (
-  <div css={styles.root}>
-    <ReactHelmet>
-      <title>{title ? `${title} - le0.io` : `le0.io`}</title>
-      <meta name="description" content={description} />
-    </ReactHelmet>
-    <Global styles={styles.fonts} />
-    <Global styles={emotionReset} />
-    <Global styles={styles.global} />
-    <Global styles={{ 'html, body': { background: backgroundColor } }} />
-    {children}
-  </div>
-)
+const DarkModeContext = createContext()
+const useDarkMode = () => {
+  const [darkMode, setDarkMode] = useState(false)
+
+  const toggleDarkMode = () => setDarkMode(!darkMode)
+
+  return {
+    darkMode,
+    toggleDarkMode,
+  }
+}
+
+const RootLayout = ({ children, location }) => {
+  const { darkMode, toggleDarkMode } = useDarkMode()
+
+  return (
+    <DarkModeContext.Provider value={{ darkMode }}>
+      <div css={styles.root}>
+        <Global styles={styles.fonts} />
+        <Global styles={emotionReset} />
+        <Global styles={styles.global} />
+        <Global styles={{ 'html, body': { background: darkMode ? colors.darkGrey : colors.lightYellow } }} />
+
+        {children}
+
+        {location.pathname !== `/` && (
+          <div css={styles.darkModeToggle} onClick={toggleDarkMode}>
+            <div css={styles.darkModeInner}>
+              <MoonSVG css={[styles.SVG, styles.SVGSun, darkMode && styles.SVGHidden]} />
+              <SunSVG css={[styles.SVG, styles.SVGMoon, !darkMode && styles.SVGHidden]} />
+            </div>
+          </div>
+        )}
+      </div>
+    </DarkModeContext.Provider>
+  )
+}
 
 export default RootLayout
+export { DarkModeContext }

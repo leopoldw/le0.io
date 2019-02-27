@@ -1,7 +1,7 @@
 import React from 'react'
 import useDarkMode from 'hooks/useDarkMode'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { colors, fontSizes } from 'consts/design'
+import { colors, fontSizes, animationSpeeds } from 'consts/design'
 
 const style = {
   link: {
@@ -17,6 +17,7 @@ const style = {
   },
   text: {
     color: colors.darkBlue,
+    transition: `color ${animationSpeeds.normal}ms linear`,
   },
   textDark: {
     color: colors.yellow,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import RootLayout from '../rootLayout'
+// import PageConfig from '../PageConfig'
 import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import { colors, fontSizes, borderRadii } from 'consts/design'
@@ -34,24 +34,22 @@ const PostPreview = ({ post }) => (
   </div>
 )
 
+// title="Front End Posts"
+// description="leopold wicht front end posts about javascript and react"
+// backgroundColor={colors.lightYellow}
+
 const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => (
-  <RootLayout
-    title="Front End Posts"
-    description="leopold wicht front end posts about javascript and react"
-    backgroundColor={colors.lightYellow}
-  >
-    <ContentContainer>
-      <main css={styles.pageContainer}>
-        {posts.map(({ node: post }) => (
-          <UnstyledLink to={post.fields.slug} key={post.id}>
-            <PostPreview post={post} />
-          </UnstyledLink>
-        ))}
-      </main>
-    </ContentContainer>
-  </RootLayout>
+  <ContentContainer>
+    <main css={styles.pageContainer}>
+      {posts.map(({ node: post }) => (
+        <UnstyledLink to={post.fields.slug} key={post.id}>
+          <PostPreview post={post} />
+        </UnstyledLink>
+      ))}
+    </main>
+  </ContentContainer>
 )
 
 export default IndexPage

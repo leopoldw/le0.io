@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { DarkModeContext } from 'pages/post'
+import { DarkModeContext } from '../RootLayout'
 
 const useDarkMode = () => {
   const { darkMode } = useContext(DarkModeContext)

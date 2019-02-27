@@ -79,6 +79,12 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/RootLayout.js`),
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-feed`,
     //   options: mdxFeed,
