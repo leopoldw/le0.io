@@ -198,7 +198,6 @@ export const pageQuery = graphql`
         title
         date
         description
-        keywords
       }
       code {
         body
