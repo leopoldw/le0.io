@@ -38,8 +38,8 @@ const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => (
   <RootLayout
-    title="Frontend Posts"
-    description="TODO"
+    title="Front End Posts"
+    description="leopold wicht front end posts about javascript and react"
     backgroundColor={colors.lightYellow}
   >
     <ContentContainer>

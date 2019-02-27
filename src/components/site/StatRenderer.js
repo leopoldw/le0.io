@@ -2,7 +2,6 @@ import React from 'react'
 import Guidelines from './Guidelines'
 import { fontSizes, mediaQueries } from 'consts/design'
 
-console.log(mediaQueries)
 const style = {
   text: {
     color: `white`,

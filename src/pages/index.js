@@ -8,6 +8,7 @@ import UAStats from 'components/site/stats/UAStats'
 import IPStats from 'components/site/stats/IPStats'
 import WindowStats from 'components/site/stats/WindowStats'
 import NavigatorStats from 'components/site/stats/NavigatorStats'
+import TextRenderIn from 'components/site/TextRenderIn'
 import Button from 'components/site/Button'
 
 const styles = {
@@ -42,14 +43,15 @@ const styles = {
     lineHeight: `1.2em`,
   },
   subheader: {
-    // TODO: dedup
     color: colors.yellow,
-    fontFamily: `Archery Black`,
     fontSize: 40,
     lineHeight: `1.2em`,
   },
   buttonContainer: {
     marginTop: 20,
+    '& > a': {
+      marginRight: 15,
+    },
   },
   statsContainer: {
     display: `flex`,
@@ -94,15 +96,21 @@ const IndexPage = () => (
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>
           <Guidelines>
-            <h1 css={styles.header}>Leopold Wicht</h1>
+            <TextRenderIn color={colors.yellow}>
+              <h1 css={styles.header}>Leopold Wicht</h1>
+            </TextRenderIn>
           </Guidelines>
           <div>
             <Guidelines>
-              <div css={styles.subheader}>Front End Wizard</div>
+              <TextRenderIn color={colors.yellow}>
+                <div css={styles.subheader}>Front End Engineer</div>
+              </TextRenderIn>
             </Guidelines>
           </div>
           <div css={styles.buttonContainer}>
             <Button to="/posts">See All Posts</Button>
+            <Button href="https://www.linkedin.com/in/leowicht/">LinkedIn</Button>
+            <Button to="/posts">Contact</Button>
           </div>
         </div>
       </div>
