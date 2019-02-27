@@ -4,7 +4,7 @@ import { colors } from 'consts/design'
 const CSS = {
   color: colors.darkBlue,
   '&:hover': {
-    color: colors.mediumBlue,
+    textDecoration: `none`,
   },
 }
 

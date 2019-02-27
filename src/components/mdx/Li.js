@@ -1,8 +1,10 @@
 import React from 'react'
+import { fontSizes } from 'consts/design'
 
 const CSS = {
   listStyleType: `square`,
-  marginBottom: 5,
+  fontSize: fontSizes.smaller,
+  marginBottom: 10,
   '&:last-child': {
     marginBottom: 0,
   },

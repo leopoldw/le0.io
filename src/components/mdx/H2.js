@@ -1,7 +1,6 @@
 import React, { useRef, useContext } from 'react'
 import { fontSizes, sizes, colors } from 'consts/design'
 import LinkSVG from 'assets/link.svg'
-import uniqid from 'uniqid'
 import { DarkModeContext } from 'pages/post'
 
 
@@ -37,17 +36,39 @@ const style = {
   },
 }
 
+// https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
+const getHashForKey = key =>
+  key
+    .split(``)
+    .reduce((prevHash, currVal) =>
+      (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0,
+    0)
+
+const useUniqueIdForChild = children => {
+  const idRefs = useRef()
+
+  // assume header will be either a string
+  // or one level deep component
+  const key = typeof children === `string`
+    ? children
+    : children.props.children
+
+  if (!idRefs.current)
+  idRefs.current = {}
+
+  if (!idRefs.current[key])
+    idRefs.current[key] = getHashForKey(key)
+
+  return idRefs.current[key]
+}
+
 const H2 = ({ children, ...rest }) => {
-  const idRef = useRef()
-
-  if (!idRef.current)
-    idRef.current = uniqid(`link-`)
-
+  const id = useUniqueIdForChild(children)
   const { darkMode } = useContext(DarkModeContext)
 
   return (
-    <h2 css={style.header} id={idRef.current} name={idRef.current} {...rest}>
-      <a css={[style.link, darkMode ? style.linkDark : style.linkLight]} href={`#${idRef.current}`} aria-hidden>
+    <h2 css={style.header} id={id} name={id} {...rest}>
+      <a css={[style.link, darkMode ? style.linkDark : style.linkLight]} href={`#${id}`} aria-hidden>
         <LinkSVG />
       </a>
       {children}

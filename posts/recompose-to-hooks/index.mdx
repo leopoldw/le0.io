@@ -17,35 +17,75 @@ When [Recompose](https://github.com/acdlite/recompose) announced shortly after t
 Given that Recompose has now been unequivocally usurped by it's more official cousin, having to migrate over is an inevitability. However, the Recompose and Hooks feature substantially different APIs, so it's not immediatley obvious how to do this. In this post I'll outline some replacement hooks for the more popular Recompose functions, as well as some potential caveats. But first - for the uninitiated: an introduction to the issue at hand.
 
 ## Why bother with Recompose in the first place?
-I'm glad you asked. When working on a React project with complex and ever-changing requirements, it's easy for that complexity to reflect in the codebase as a tangle of bloated logic which, over time, becomes harder and harder to test and reason about.
 
-// REMOVETHIS
-An initial approach may look something like this:
+// TODO functional programming
+// https://www.robinwieruch.de/react-component-composition/
 
-- Create a simple functional component
-- Requirements change, and some kind of state or lifecycle hook becomes necessary
-- Begin the process of converting our straightforward functional component to a class-based component (cue PTSD)
-- Over time, add a variety of class methods which perform some function to aid in rendering. Since these functions can be placed and used practically anywhere in the class, reasoning about component logic becomes a matter of jumping around the file, chasing strings of logic.
+I'm glad you asked - but feel free to skip this chapter if you already know the basic rundown. Recompose allowed us to slash down a significant portion of React boilerplate by providing convenient [Higher Order Components](https://reactjs.org/docs/higher-order-components.html) (HOCs), or "enhancers", which can incrementally add functionality to a component, usually functional. This provides some significant benefits:
 
-There are a [myriad](https://medium.com/@Zwenza/functional-vs-class-components-in-react-231e3fbd7108) [of](https://frontarm.com/james-k-nelson/es6-classes-vs-function-components/) [articles](https://www.andreasreiterer.at/react-functional-components/) in the wild addressing the class/functional component debate, but ultimatley my main concerns were:
+- Logical complexity is broken up into smaller chunks which are easier to reason about
+- Individual enhancers can be tested in isolation, providing better incremental testing
+- DRYing up code by sharing related enhancers between components with similar concerns
 
-// pros/cons
+The pattern I'd settled on just before hooks entered the picture looked something like this:
 
-- Breaking up logical complexity into smaller chunks which are easier to reason about
-- Removing dependencies between logical chunks so they become agnostic about where and how they're used
-- DRYing up code by sharing related logic chunks where helpful
+First, write a __logicless__ functional, or UI, component. This component never has a `return` statement, instead only returning JSX whith the assumption that it would magically recieve all the props it would ever need in the future.
 
-// TODO: logicless functional
+```jsx
+// don't worry about where the props come from yet
+const GreetingCounterUI = ({ greeting, count, incrementCounter }) => {
+  <>
+    <h1>{greeting}</h1>
+    <div>{`You have clicked the button ${count} times`}</div>
+    <button onClick={incrementCounter}>Click Me</button>
+  <>
+}
+```
+
+Next, I'd incrementally add the props I'd need via a set of enhancers. In this case, I'd like to calculate a greeting from a name, so I create an enhancer like this:
+
+```jsx
+const addGreeting = withProps(({ name }) => ({
+  greeting: `Hello, ${name}`,
+}))
+```
+
+My UI component requires some basic state, so let's add that too.
+
+```jsx
+const addCounter = withStateHanders({
+  count: 0
+}, {
+  incrementCounter: ({ count }) => () => ({ count + 1}),
+})
+```
+
+Finally, we tie everything together with the included `compose` helper. As you can see below, we've split what could have been one larger class component into two enhancers and one UI component. I can then go on to test these smaller logical increments individually, and even share some of the enhancers with other UI components.
+
+```jsx
+import { compose } from 'recompose'
+
+const GreetingCounter = compose(
+  addGreeting,
+  addCounter,
+  GreetingCounterUI,
+)
+
+// `compose` allows a more convenient way of wrapping components
+// than this
+addGreeting(addCounter(GreetingCounterUI))
+
+// invoke like this
+<GreetingCounter name="fred" />
+```
 
 # API Replacements
 
-Finally - let's see some code!
+With hooks, React has provided us with a completley new approach to solving th
 
-// TODO: not all are hooks
+Not all the solutions below strictly involve hooks, but they all aim to break functional components down into smaller logical, testable increments - one of the main goals of Recompose and hooks.
 
-<Aside>React docs highly recommend starting hook names with "use", ef "useGreeting".</Aside>
-
-// TODO: hooks are just functions
+<Aside>React docs highly recommend starting hook names with <InlineCode>use</InlineCode>, eg <InlineCode>useGreeting</InlineCode>. It's too soon to tell if stretching this nomenclature to include all logical increments makes sense or not, but for the hell of it I'm gonna do that here.</Aside>
 
 ---
 
@@ -71,14 +111,14 @@ You can then use these functions inside a function component as you would any ho
 
 ```jsx
 // hook-esque
-const { hi, bye } = useGreeting('name')
+const { hi, bye } = useGreeting(`name`)
 ```
 
 It's up to you if you prefer creating a function which groups similar value calculations and returns multiple values in an object (or similar), or if you seperate each value into it's own function.
 
 ```jsx
 const useHello = name => `Hello, ${name}!`
-const useGoodbye = name => `Hello, ${name}!`
+const useGoodbye = name => `Goodbye, ${name}!`
 ```
 
 ---

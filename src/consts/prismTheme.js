@@ -23,13 +23,13 @@ const theme = {
       },
     },
     {
-      types: [`string`, `token`],
+      types: [`string`, `token`, `attr-value`],
       style: {
         color: `#e6db74`,
       },
     },
     {
-      types: [`punctuation`],
+      types: [`punctuation`, `script`],
       style: {
         color: `rgb(201, 237, 242)`,
       },
