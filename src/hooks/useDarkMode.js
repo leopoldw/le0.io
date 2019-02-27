@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { DarkModeContext } from '../RootLayout'
+import get from 'lodash/get'
 
-const useDarkMode = () => {
-  const { darkMode } = useContext(DarkModeContext)
-  return darkMode
-}
+// bug during SSR with `useContext` sometimes
+// returning undefined, so use `get`
+const useDarkMode = () =>
+  get(useContext(DarkModeContext), `darkMode`, false)
 
 export default useDarkMode

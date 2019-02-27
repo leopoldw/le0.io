@@ -1,4 +1,5 @@
 const path = require(`path`)
+const mdxFeed = require(`gatsby-mdx/feed`)
 const isDev = process.env.NODE_ENV === `development`
 
 if (isDev)
@@ -7,10 +8,15 @@ if (isDev)
   })
 
 module.exports = {
+  siteMetadata: {
+    title: `le0.io`,
+    siteUrl: `https://le0.io`,
+    description: `Front End JavaScript blog by Leopold Wicht`,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
-    // `gatsby-plugin-sitemap`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-webpack-size`,
     `gatsby-plugin-resolve-src`,
@@ -85,24 +91,24 @@ module.exports = {
         component: require.resolve(`./src/RootLayout.js`),
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: mdxFeed,
-    // },
     {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `Leopold Wicht Blog`,
-        short_name: `le0.io`,
-        start_url: `/`,
-        background_color: `#00207f`,
-        theme_color: `#fec763`,
-        display: `minimal-ui`,
-        icon: `src/assets/leo.png`,
-        include_favicon: true,
-        theme_color_in_head: false,
-      },
+      resolve: `gatsby-plugin-feed`,
+      options: mdxFeed,
     },
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `Leopold Wicht Blog`,
+    //     short_name: `le0.io`,
+    //     start_url: `/`,
+    //     background_color: `#00207f`,
+    //     theme_color: `#fec763`,
+    //     display: `minimal-ui`,
+    //     icon: `src/assets/leo.png`,
+    //     include_favicon: true,
+    //     theme_color_in_head: false,
+    //   },
+    // },
     `gatsby-plugin-netlify`, // always last
   ],
 }
