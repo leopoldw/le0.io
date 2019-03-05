@@ -18,6 +18,9 @@ const style = {
   containerDark: {
     background: colors.standoutSubtle,
   },
+  header: {
+    fontWeight: `600`,
+  },
   SVG: {
     color: colors.darkBlue,
     transition: `color ${animationSpeeds.normal}ms linear`,
@@ -30,11 +33,12 @@ const style = {
   },
 }
 
-const Aside = ({ children }) => {
+const Aside = ({ children, header }) => {
   const darkMode = useDarkMode()
   return (
     <div css={[style.container, darkMode && style.containerDark]}>
       <RightChevron css={[style.SVG, darkMode && style.SVGDark]} />
+      {header && <div css={style.header}>{header}</div>}
       {children}
     </div>
   )
