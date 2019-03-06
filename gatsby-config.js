@@ -4,10 +4,6 @@ const isDev = process.env.NODE_ENV === `development`
 
 const fs = require(`fs`)
 
-fs.readdirSync(__dirname).forEach(file => {
-  console.log(file)
-})
-
 fs.readdirSync(path.join(__dirname, `src`)).forEach(file => {
   console.log(`SRC `, file)
 })
