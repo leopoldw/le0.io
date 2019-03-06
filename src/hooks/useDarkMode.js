@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { DarkModeContext } from '../RootLayout'
+import { DarkModeContext } from '../Root'
 import get from 'lodash/get'
 
 // bug during SSR with `useContext` sometimes

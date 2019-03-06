@@ -82,7 +82,7 @@ const useDarkMode = () => {
   }
 }
 
-const RootLayout = ({ children, location }) => {
+const Root = ({ children, location }) => {
   const { darkMode, toggleDarkMode } = useDarkMode()
 
   return (
@@ -108,5 +108,5 @@ const RootLayout = ({ children, location }) => {
   )
 }
 
-export default RootLayout
+export default Root
 export { DarkModeContext }

@@ -2,12 +2,6 @@ const path = require(`path`)
 const mdxFeed = require(`gatsby-mdx/feed`)
 const isDev = process.env.NODE_ENV === `development`
 
-const fs = require(`fs`)
-
-fs.readdirSync(path.join(__dirname, `src`)).forEach(file => {
-  console.log(`SRC `, file)
-})
-
 if (isDev)
   require(`dotenv`).config({
     path: `./.secrets`,
@@ -94,7 +88,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(path.join(__dirname, `src`, `RootLayout.js`)),
+        component: require.resolve(path.join(__dirname, `src`, `Root.js`)),
       },
     },
     {
