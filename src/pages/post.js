@@ -11,13 +11,10 @@ import ContentContainer from 'components/blog/ContentContainer'
 import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
-  pageHeader: {
-    marginTop: 60,
-    marginBottom: 100,
-  },
   article: {
     transition: `color ${animationSpeeds.normal}ms linear`,
-    marginBottom: 120,
+    paddingTop: 100,
+    marginBottom: 100,
     color: colors.almostBlack,
   },
   articleDark: {
@@ -63,10 +60,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
         title={frontmatter.title}
         description={frontmatter.description}
       />
-      <ContentContainer>
-        <header css={styles.pageHeader}>
-          <Branding />
-        </header>
+      <ContentContainer header={<Branding />}>
         <main>
           <article css={[styles.article, darkMode && styles.articleDark]}>
             <header css={styles.articleHeader}>

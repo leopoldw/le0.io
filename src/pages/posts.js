@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 // import PageConfig from '../PageConfig'
 import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
+import Branding from 'components/blog/Branding'
 import { colors, fontSizes, borderRadii } from 'consts/design'
 
 const styles = {
@@ -41,7 +42,7 @@ const PostPreview = ({ post }) => (
 const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => (
-  <ContentContainer>
+  <ContentContainer header={<Branding />}>
     <main css={styles.pageContainer}>
       {posts.map(({ node: post }) => (
         <UnstyledLink to={post.fields.slug} key={post.id}>

@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import { colors } from 'consts/design'
 
 const CSS = {
-  color: colors.nearlyBlack,
+  color: colors.almostBlack,
   textDecoration: `none`,
 }
 

@@ -8,7 +8,6 @@ import UAStats from 'components/site/stats/UAStats'
 import IPStats from 'components/site/stats/IPStats'
 import WindowStats from 'components/site/stats/WindowStats'
 import NavigatorStats from 'components/site/stats/NavigatorStats'
-import TextRenderIn from 'components/site/TextRenderIn'
 import Button from 'components/site/Button'
 
 const styles = {
@@ -107,15 +106,11 @@ const IndexPage = () => (
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>
           <Guidelines>
-            <TextRenderIn color={colors.yellow}>
-              <h1 css={styles.header}>Leopold Wicht</h1>
-            </TextRenderIn>
+            <h1 css={styles.header}>Leopold Wicht</h1>
           </Guidelines>
           <div>
             <Guidelines>
-              <TextRenderIn color={colors.yellow}>
-                <div css={styles.subheader}>Front End Engineer</div>
-              </TextRenderIn>
+              <div css={styles.subheader}>Front End Engineer</div>
             </Guidelines>
           </div>
           <div css={styles.buttonContainer}>
