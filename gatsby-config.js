@@ -21,7 +21,7 @@ module.exports = {
     `gatsby-plugin-webpack-size`,
     `gatsby-plugin-resolve-src`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`, // serves broken site from cache
     {
       resolve: `gatsby-mdx`,
     },
