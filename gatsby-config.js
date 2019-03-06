@@ -88,27 +88,27 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/RootLayout.js`),
+        component: require.resolve(path.join(__dirname, `src`, `RootLayout.js`)),
       },
     },
     {
       resolve: `gatsby-plugin-feed`,
       options: mdxFeed,
     },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `Leopold Wicht Blog`,
-    //     short_name: `le0.io`,
-    //     start_url: `/`,
-    //     background_color: `#00207f`,
-    //     theme_color: `#fec763`,
-    //     display: `minimal-ui`,
-    //     icon: `src/assets/leo.png`,
-    //     include_favicon: true,
-    //     theme_color_in_head: false,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `le0.io`,
+        short_name: `le0.io`,
+        start_url: `/`,
+        background_color: `#00207f`,
+        theme_color: `#fec763`,
+        display: `minimal-ui`,
+        icon: `src/assets/leo.png`,
+        include_favicon: true,
+        theme_color_in_head: false,
+      },
+    },
     `gatsby-plugin-netlify`, // always last
   ],
 }
