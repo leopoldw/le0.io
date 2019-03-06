@@ -4,7 +4,7 @@ import useDarkMode from 'hooks/useDarkMode'
 
 const style = {
   default: {
-    margin: `${sizes.paragraphSpacing}px 0`,
+    margin: `10px 0`,
     border: 0,
     borderBottom: `1px solid ${colors.mediumGrey}`,
   },

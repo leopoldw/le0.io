@@ -8,8 +8,7 @@ const style = {
   header: {
     fontSize: fontSizes.subheading,
     fontWeight: `600`,
-    lineHeight: `1em`,
-    marginBottom: sizes.headerSpacing,
+    lineHeight: `3em`,
     position: `relative`,
     '& a': {
       visibility: `hidden`,

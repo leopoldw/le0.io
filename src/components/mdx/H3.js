@@ -1,11 +1,8 @@
 import React from 'react'
-import { fontSizes } from 'consts/design'
 
 const CSS = {
-  fontSize: fontSizes.larger,
   fontWeight: `bold`,
-  lineHeight: `1em`,
-  marginBottom: 20,
+  lineHeight: `3em`,
 }
 
 const H3 = props =>

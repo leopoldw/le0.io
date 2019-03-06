@@ -6,7 +6,7 @@ const colors = {
   mediumYellow: `#fff1d8`,
   almostBlack: `#1c1c1c`,
   almostWhite: `#fffbf3`,
-  darkGrey: `#1d1d1d`,
+  darkGrey: `#222222`,
   mediumGrey: `#c0c0c0`,
   standout: `rgba(255, 255, 255, 0.2)`,
   standoutSubtle: `rgba(255, 255, 255, 0.05)`,
@@ -15,7 +15,6 @@ const colors = {
 const sizes = {
   contentMaxWidth: 800,
   paragraphSpacing: 40,
-  headerSpacing: 20,
 }
 
 // root is 22px
