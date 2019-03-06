@@ -8,11 +8,11 @@ import Aside from '../../src/components/blog/Aside'
 import InlineCode from '../../src/components/mdx/InlineCode'
 import LazyImage from '../../src/components/blog/LazyImage'
 
-[Recompose](https://github.com/acdlite/recompose) is awesome. I've been using it on some larger React projects to supercharge functional components with sharable enhancers, some of which use features like state (yes, inside a functional component).
+[Recompose](https://github.com/acdlite/recompose) is awesome. I've been using it on some larger React projects to supercharge functional components with shareable enhancers, some of which use features like state (yes, inside a functional component).
 
 <Aside header={`What's an "enhancer"?`}>Both Recompose and React Hooks supply <InlineCode>enhancers</InlineCode>, aka some functionality to <InlineCode>enhance</InlineCode> a component with new features, usually in the form of additional props and handlers.</Aside>
 
-For reasons then unknown, Recompose development has stagnated for a while. This was disappointing as the APIs it provided to create sharable, composable enhancers felt essential in a way no other React library had before. Then, shortly after the announcement of [React Hooks](https://reactjs.org/docs/Hooks-intro.html), Recompose announced that it would cease active new feature development. Things began to make sense. As per a note from core developer [Andrew Clark](https://twitter.com/acdlite):
+For reasons then unknown, Recompose development has stagnated for a while. This was disappointing as the APIs it provided to create shareable, composable enhancers felt essential in a way no other React library had before. Then, shortly after the announcement of [React Hooks](https://reactjs.org/docs/Hooks-intro.html), Recompose announced that it would cease active new feature development. Things began to make sense. As per a note from core developer [Andrew Clark](https://twitter.com/acdlite):
 
 > I created Recompose about three years ago. About a year after that, I joined the React team. Today, we announced a proposal for Hooks. Hooks solves all the problems I attempted to address with Recompose three years ago, and more on top of that. I will be discontinuing active maintenance of this package (...), and recommending that people use Hooks instead.
 
@@ -32,7 +32,7 @@ The Recompose pattern I'd settled on just before Hooks entered the picture looke
 
 ### Step 1 - The UI Component
 
-Write a _logicless_ functional (or UI) component. This component should avoid contaning logic statements, instead implicitly returning JSX with the assumption that the it will magically recieve all the props it needs with no additional logic.
+Write a _logicless_ functional (or UI) component. This component should avoid containing logic statements, instead implicitly returning JSX with the assumption that the it will magically receive all the props it needs with no additional logic.
 
 
 ```jsx
@@ -99,17 +99,17 @@ Enhancer HOCs usually never render any JSX of their own, instead simply adding o
 
 Some HOCs supplied by Recompose suffer from an inverse issue. Enhancers such as `withState` do not store any update logic, instead simply delivering a slice of class-based functionality down to a functional component (in this case, `state` functionality). Enhancers like this serve only as a workaround for the feature limitations of functional components.
 
-As each enhancer is a complete component, React Devtools could easily become a complete mess. A single inner component wrapped in numerous enhancers would create an unwieldly, massive component tree - displayed as something resembling [callback hell](http://callbackhell.com/). This made debugging in Devtools painful and difficult.
+As each enhancer is a complete component, React Devtools could easily become a complete mess. A single inner component wrapped in numerous enhancers would create an unwieldy component tree - displayed as something resembling [callback hell](http://callbackhell.com/). This made debugging in Devtools painful and difficult.
 
 <LazyImage fileName="devtoolsrecompose.png" caption="Check out the catchy component names too!" />
 
-Internally, React does not delineate between components that render their own JSX vs components that simply pass something down to an inner component. What we need is a new way to enhance our components without creating additional intermediete components in the process.
+Internally, React does not delineate between components that render their own JSX vs components that simply pass something down to an inner component. What we need is a new way to enhance our components without creating additional intermediate components in the process.
 
 ## Hooks to the rescue
 
 Hooks manage to address HOC enhancer issues elegantly by simply being humble functions rather than full-fat React components.
 
-They don't contain any `render` functionality, and they don't need to. Instead, they simply supply React components with _something_ they need & handle rerendering the parent component when required. As they are simply functions, the underlying component tree is significantly decluttered.
+They don't contain any `render` functionality, and they don't need to. Instead, they simply supply React components with _something_ they need & handle re-rendering the parent component when required. As they are simply functions, the underlying component tree is significantly decluttered.
 
 ## API Replacements
 
@@ -139,7 +139,7 @@ const [name, setName] = useState(initialName)
 
 ## `withStateHanders`
 
-While `withState` is just simple getter/settler that will completely replace the entire state each time, `withStateHanders` allows us to capture more complex logic.
+While `withState` is just simple getter/setter that will completely replace the entire state each time, `withStateHanders` allows us to capture more complex logic.
 
 Instead of providing one update function, this enhancer allows us to create custom handlers which can update the contained state in a more targeted way. These handlers can access both current props and internal state, and in return update a slice of the internal state instead of replacing it. In this way, it functions much more like calling `setState` inside a class method handler.
 
@@ -188,7 +188,7 @@ const useGreetings = withProps({ name }) => ({
 })
 ```
 
-Since Hooks don't explicity plug into component props like this, we can instead use a vanilla JavaScript function to encapsulate the logic found within `withProps`.
+Since Hooks don't explicitly plug into component props like this, we can instead use a vanilla JavaScript function to encapsulate the logic found within `withProps`.
 
 ```jsx
 // ssssh, not hook based ¯\\_(ツ)_/¯
@@ -200,7 +200,7 @@ const useGreetings = name => ({
 const { hi, bye } = useGreetings(name)
 ```
 
-It's up to you to decide if you prefer creating a function which groups similar value calculations into a single return, or if you want to seperate each value into it's own function.
+It's up to you to decide if you prefer creating a function which groups similar value calculations into a single return, or if you want to separate each value into it's own function.
 
 ```jsx
 const useHi = name => `Hello, ${name}!`
@@ -250,7 +250,7 @@ React now also provides a [`React.memo`](https://reactjs.org/docs/react-api.html
 
 ## `withHandlers`
 
-Handlers have historically been a bit tricky to deal with in React, since they often need to access both the arguments passed to them _and_ the current props of the component. We can `bind` the props we need to the handler, or create an anonmous inline function which calls the handler with the props in the parent scope.
+Handlers have historically been a bit tricky to deal with in React, since they often need to access both the arguments passed to them _and_ the current props of the component. We can `bind` the props we need to the handler, or create an anonymous inline function which calls the handler with the props in the parent scope.
 
 ```jsx
 // bound function
@@ -307,7 +307,7 @@ While the full Component API still resides exclusively in `React.Component`, Hoo
 
 This Hook provides an official way to trigger "side effects" and is usually run on _every_ render, however here we'll focus on equivalent functionality for the lifecycles mentioned above. The most important thing to note here is the second optional argument of `useEffect` - an array of variables used to determine when the Hook is run. for our use case, this should either be an empty array or nothing at all.
 
-<Aside>While in this example I'm just trying to recreate older functionality, in practice the <InlineCode>useEffect</InlineCode> Hook is not a direct equivalent for these methods but instead a new paradigm for dealing with component side effects. It's best to see it a brand new tool for solving specific issues previously addressed by certian lifecycle methods.</Aside>
+<Aside>While in this example I'm just trying to recreate older functionality, in practice the <InlineCode>useEffect</InlineCode> Hook is not a direct equivalent for these methods but instead a new paradigm for dealing with component side effects. It's best to see it a brand new tool for solving specific issues previously addressed by certan lifecycle methods.</Aside>
 
 ```jsx
 // ONLY MOUNT
@@ -337,7 +337,7 @@ useEffect(() => {
 
 ## `branch`
 
-This enahncer can render one of two components depending on the props passed from the chain.
+This enhancer can render one of two components depending on the props passed from the chain.
 
 The Recompose version of this enhancer is worth noting as it has no good equivalent Hook. While the HOC pattern has it's downsides, it works at component level and thus has control over the component provided to the enhancer. Hooks only come into effect once inside an invoked component.
 
@@ -362,4 +362,4 @@ const Branch = ({ condition, Left, Right, ...rest }) =>
 
 While this is by no means a exhaustive list of all Recompose / Hook enhancers, the examples above should illustrate their equivalency.
 
-The enhancer pattern is incredibley useful and deserves to be part of the [official top-level API](https://reactjs.org/docs/react-api.html#hooks), as it now is with Hooks. Even though they're still fresh, I'm sold on Hooks as a Recompose replacement thanks to their simplicity, flexibility and ease of use.
+The enhancer pattern is incredibly useful and deserves to be part of the [official top-level API](https://reactjs.org/docs/react-api.html#hooks), as it now is with Hooks. Even though they're still fresh, I'm sold on Hooks as a Recompose replacement thanks to their simplicity, flexibility and ease of use.
