@@ -102,7 +102,7 @@ const styles = {
 
 const IndexPage = () => (
   <>
-    <PageConfig />
+    <PageConfig themeColor={colors.darkBlue} />
     <div css={styles.container}>
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>

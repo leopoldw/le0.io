@@ -19,7 +19,7 @@ const A = props => {
   const darkMode = useDarkMode()
 
   return (
-    <a css={[style.default, darkMode && style.darkMode]} target="_blank" {...props} />
+    <a css={[style.default, darkMode && style.darkMode]} target="_blank" rel="noopener" {...props} />
   )
 }
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactHelmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import useDarkMode from 'hooks/useDarkMode'
+import { colors } from 'consts/design'
 
 const query = graphql`
   query GetSiteMetadata {
@@ -22,7 +24,7 @@ const query = graphql`
   }
 `
 
-const PageConfig = ({ title, description, path = `` }) => {
+const PageConfig = ({ title, description, themeColor, path = `` }) => {
   const {
     site: { siteMetadata: meta },
     file: { childImageSharp: { fluid: { src: image } } },
@@ -72,6 +74,12 @@ const PageConfig = ({ title, description, path = `` }) => {
         {
           name: `twitter:image`,
           content: imageUrl,
+        },
+        {
+          name: `theme-color`,
+          content: themeColor
+            ? themeColor
+            : useDarkMode ? colors.darkGrey : colors.mediumYellow,
         },
       ]}
     />

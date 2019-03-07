@@ -73,6 +73,7 @@ module.exports = {
           {
             family: `Exo 2`,
             subsets: [`latin`],
+            formats: [`woff2`],
             variants: [`300`, `600`],
           },
         ],
