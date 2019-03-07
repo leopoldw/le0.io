@@ -19,7 +19,6 @@ const css = {
     tabSize: `4`,
     hyphens: `none`,
     whiteSpace: `pre-wrap`,
-    overflow: `scroll`,
     fontFamily: `Consolas, Menlo, Monaco, source-code-pro, "Courier New", monospace`,
     '& > div:last-child': {
       display: `none`,
