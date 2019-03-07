@@ -4,8 +4,8 @@ import { sizes } from 'consts/design'
 const style = {
   container: {
     maxWidth: sizes.contentMaxWidth,
-    margin: `0 auto 80px auto`,
-    padding: `0 20px`,
+    margin: `0 auto`,
+    padding: `20px 0 80px 0`,
   },
   header: {
     marginTop: 60,
