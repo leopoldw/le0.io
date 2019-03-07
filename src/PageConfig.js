@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactHelmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
-import useDarkMode from 'hooks/useDarkMode'
 
 const query = graphql`
   query GetSiteMetadata {
