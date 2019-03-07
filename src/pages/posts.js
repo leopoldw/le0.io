@@ -5,6 +5,7 @@ import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
 import { colors, fontSizes, borderRadii } from 'consts/design'
+import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
   pageContainer: {
@@ -19,18 +20,30 @@ const styles = {
       borderColor: `black`,
     },
   },
+  previewContainerDark: {
+    color: colors.almostWhite,
+    borderColor: colors.mediumYellow,
+    '&:hover': {
+      borderColor: colors.yellow,
+    },
+  },
   postHeader: {
     fontSize: fontSizes.heading,
     marginBottom: 40,
+  },
+  postHeaderDark: {
+    '&:hover': {
+      color: colors.yellow,
+    },
   },
   postSummary: {
     // color: `white`,
   },
 }
 
-const PostPreview = ({ post }) => (
-  <div css={styles.previewContainer}>
-    <h2 css={styles.postHeader}>{post.frontmatter.title}</h2>
+const PostPreview = ({ post, darkMode }) => (
+  <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
+    <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
     <p css={styles.postSummary}>{post.frontmatter.summary}</p>
   </div>
 )
@@ -41,17 +54,21 @@ const PostPreview = ({ post }) => (
 
 const IndexPage = ({
   data: { allMdx: { edges: posts } },
-}) => (
-  <ContentContainer header={<Branding />}>
-    <main css={styles.pageContainer}>
-      {posts.map(({ node: post }) => (
-        <UnstyledLink to={post.fields.slug} key={post.id}>
-          <PostPreview post={post} />
-        </UnstyledLink>
-      ))}
-    </main>
-  </ContentContainer>
-)
+}) => {
+  const darkMode = useDarkMode()
+
+  return (
+    <ContentContainer header={<Branding />}>
+      <main css={styles.pageContainer}>
+        {posts.map(({ node: post }) => (
+          <UnstyledLink to={post.fields.slug} key={post.id}>
+            <PostPreview post={post} darkMode={darkMode} />
+          </UnstyledLink>
+        ))}
+      </main>
+    </ContentContainer>
+  )
+}
 
 export default IndexPage
 

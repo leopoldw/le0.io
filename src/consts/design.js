@@ -2,7 +2,7 @@ const colors = {
   darkBlue: `#00207f`,
   mediumBlue: `#00528b`,
   yellow: `#fff600`,
-  lightYellow: `#fff7e9`,
+  lightYellow: `#fff9ef`,
   mediumYellow: `#fff1d8`,
   almostBlack: `#1c1c1c`,
   almostWhite: `#fffbf3`,
@@ -14,7 +14,7 @@ const colors = {
 
 const sizes = {
   contentMaxWidth: 800,
-  paragraphSpacing: 40,
+paragraphSpacing: 40,
 }
 
 // root is 22px

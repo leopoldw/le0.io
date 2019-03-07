@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { fontSizes, sizes, colors, animationSpeeds } from 'consts/design'
+import { fontSizes, colors, animationSpeeds } from 'consts/design'
 import LinkSVG from 'assets/link.svg'
 import useDarkMode from 'hooks/useDarkMode'
 
@@ -8,7 +8,9 @@ const style = {
   header: {
     fontSize: fontSizes.subheading,
     fontWeight: `600`,
-    lineHeight: `3em`,
+    lineHeight: `1em`,
+    paddingBottom: 20,
+    paddingTop: 40,
     position: `relative`,
     '& a': {
       visibility: `hidden`,

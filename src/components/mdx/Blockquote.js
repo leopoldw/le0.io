@@ -17,12 +17,12 @@ const styles = {
   },
   bookmark: {
     transition: `background ${animationSpeeds.normal}ms linear`,
-    width: 5,
+    width: 6,
     height: `100%`,
     background: colors.darkBlue,
     position: `absolute`,
     top: 0,
-    left: -15,
+    left: -10,
     borderRadius: borderRadii.small,
   },
   containerDark: {

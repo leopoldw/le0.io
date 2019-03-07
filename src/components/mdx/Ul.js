@@ -3,6 +3,7 @@ import { sizes } from 'consts/design'
 
 const CSS = {
   marginBottom: sizes.paragraphSpacing,
+  marginLeft: 25,
 }
 
 const Ul = props =>

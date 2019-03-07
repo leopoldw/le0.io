@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { colors } from 'consts/design'
 
 const CSS = {
-  color: colors.almostBlack,
+  color: `inherit`,
   textDecoration: `none`,
 }
 

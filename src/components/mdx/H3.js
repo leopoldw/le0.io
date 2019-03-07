@@ -2,7 +2,9 @@ import React from 'react'
 
 const CSS = {
   fontWeight: `bold`,
-  lineHeight: `3em`,
+  lineHeight: `1em`,
+  paddingBottom: 20,
+  paddingTop: 40,
 }
 
 const H3 = props =>

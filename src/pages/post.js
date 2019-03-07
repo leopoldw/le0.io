@@ -53,6 +53,7 @@ const PostContent = memo(({ body }) => (
 
 const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
   const darkMode = useDarkMode()
+  window.datef = dateformat
 
   return (
     <>
@@ -65,7 +66,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
           <article css={[styles.article, darkMode && styles.articleDark]}>
             <header css={styles.articleHeader}>
               <h1 css={styles.heading}>{frontmatter.title}</h1>
-              <div css={styles.subheading}>{`${dateformat(frontmatter.date, `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
+              {/* <div css={styles.subheading}>{`${dateformat(new Date(frontmatter.date), `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div> */}
             </header>
             <div css={styles.articleBody}>
               <PostContent body={code.body} />
