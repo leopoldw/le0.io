@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-// import PageConfig from '../PageConfig'
+import PageConfig from '../PageConfig'
 import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
@@ -45,10 +45,6 @@ const PostPreview = ({ post, darkMode }) => (
   </div>
 )
 
-// title="Front End Posts"
-// description="leopold wicht front end posts about javascript and react"
-// backgroundColor={colors.lightYellow}
-
 const IndexPage = ({
   data: { allMdx: { edges: posts } },
 }) => {
@@ -56,6 +52,10 @@ const IndexPage = ({
 
   return (
     <ContentContainer header={<Branding />}>
+      <PageConfig
+        title="Posts"
+        description="The personal blog of Leopold Wicht - front end focused posts"
+      />
       <main css={styles.pageContainer}>
         {posts.map(({ node: post }) => (
           <UnstyledLink to={post.fields.slug} key={post.id}>

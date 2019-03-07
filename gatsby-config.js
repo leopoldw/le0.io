@@ -102,7 +102,7 @@ module.exports = {
         short_name: `le0.io`,
         start_url: `/`,
         background_color: `#00207f`,
-        theme_color: `#fec763`,
+        theme_color: `#fff600`,
         display: `minimal-ui`,
         icon: `src/assets/leo.png`,
         include_favicon: true,

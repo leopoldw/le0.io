@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { colors, mediaQueries } from 'consts/design'
-// import PageConfig from '../PageConfig'
+import PageConfig from '../PageConfig'
 import MouseFollower from 'components/site/MouseFollower'
 import Guidelines from 'components/site/Guidelines'
 import UAStats from 'components/site/stats/UAStats'
@@ -102,6 +102,9 @@ const styles = {
 
 const IndexPage = () => (
   <>
+    <PageConfig
+      description="Leopold Wicht - front end engineer"
+    />
     <div css={styles.container}>
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>
