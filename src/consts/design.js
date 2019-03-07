@@ -17,7 +17,7 @@ const sizes = {
 paragraphSpacing: 40,
 }
 
-// root is 22px
+// root is 20px
 const fontSizes = {
   subtext: `0.75em`,
   smaller: `0.9em`,

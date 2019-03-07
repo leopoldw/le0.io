@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react'
 import emotionReset from 'emotion-reset'
-import { Global, css } from '@emotion/core'
-import fonts from './fonts'
+import { Global } from '@emotion/core'
 import { animationSpeeds, colors } from 'consts/design'
 import MoonSVG from 'assets/moon.svg'
 import SunSVG from 'assets/sun.svg'
@@ -14,21 +13,12 @@ const styles = {
       transition: `background ${animationSpeeds.normal}ms linear`,
     },
     body: {
-      fontFamily: `"Exo 2"`,
+      fontFamily: `"Exo 2", Arial, Helvetica, sans-serif`,
       fontWeight: `300`,
       fontSize: 20,
       textRendering: `optimizeLegibility`,
     },
   },
-  fonts: css`
-    @font-face {
-      font-family: 'Archery Black';
-      src: url('${fonts.ArcheryBlack}') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: block;
-    }
-  `,
   root: {
     width: `100%`,
     height: `100%`,
@@ -89,7 +79,6 @@ const Root = ({ children, location }) => {
   return (
     <DarkModeContext.Provider value={{ darkMode }}>
       <div css={styles.root}>
-        <Global styles={styles.fonts} />
         <Global styles={emotionReset} />
         <Global styles={styles.global} />
         <Global styles={{ 'html, body': { background: darkMode ? colors.darkGrey : colors.lightYellow } }} />
