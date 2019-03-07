@@ -51,7 +51,10 @@ const PostContent = memo(({ body }) => (
   </MDXProvider>
 ))
 
-const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
+const Post = ({
+  data: { mdx: { timeToRead, frontmatter, code } },
+  location: { pathname },
+}) => {
   const darkMode = useDarkMode()
 
   return (
@@ -59,6 +62,7 @@ const Post = ({ data: { mdx: { timeToRead, frontmatter, code } } }) => {
       <PageConfig
         title={frontmatter.title}
         description={frontmatter.description}
+        path={pathname}
       />
       <ContentContainer header={<Branding />}>
         <main>

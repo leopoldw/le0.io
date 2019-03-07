@@ -102,9 +102,7 @@ const styles = {
 
 const IndexPage = () => (
   <>
-    <PageConfig
-      description="Leopold Wicht - front end engineer"
-    />
+    <PageConfig />
     <div css={styles.container}>
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>

@@ -45,8 +45,9 @@ const PostPreview = ({ post, darkMode }) => (
   </div>
 )
 
-const IndexPage = ({
+const Posts = ({
   data: { allMdx: { edges: posts } },
+  location: { pathname },
 }) => {
   const darkMode = useDarkMode()
 
@@ -54,7 +55,7 @@ const IndexPage = ({
     <ContentContainer header={<Branding />}>
       <PageConfig
         title="Posts"
-        description="The personal blog of Leopold Wicht - front end focused posts"
+        path={pathname}
       />
       <main css={styles.pageContainer}>
         {posts.map(({ node: post }) => (
@@ -67,7 +68,7 @@ const IndexPage = ({
   )
 }
 
-export default IndexPage
+export default Posts
 
 export const query = graphql`
   query {

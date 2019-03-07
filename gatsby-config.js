@@ -10,6 +10,7 @@ if (isDev)
 module.exports = {
   siteMetadata: {
     title: `le0.io`,
+    author: `Leopold Wicht`,
     siteUrl: `https://le0.io`,
     description: `Front End JavaScript blog by Leopold Wicht`,
   },
