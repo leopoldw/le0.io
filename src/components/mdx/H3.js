@@ -4,7 +4,7 @@ const CSS = {
   fontWeight: `bold`,
   lineHeight: `1em`,
   paddingBottom: 20,
-  paddingTop: 40,
+  paddingTop: 20,
 }
 
 const H3 = props =>

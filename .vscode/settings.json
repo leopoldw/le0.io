@@ -3,4 +3,16 @@
     "configFile": ".eslintrc"
   },
   "eslint.nodePath": "./node_modules",
+  "spellright.language": [],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext",
+    "mdx"
+  ],
+  "spellright.parserByClass": {
+    "mdx": {
+      "parser": "markdown"
+    }
+  },
 }
