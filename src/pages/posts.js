@@ -36,15 +36,12 @@ const styles = {
       color: colors.yellow,
     },
   },
-  postSummary: {
-    // color: `white`,
-  },
 }
 
 const PostPreview = ({ post, darkMode }) => (
   <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
     <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
-    <p css={styles.postSummary}>{post.frontmatter.summary}</p>
+    <p>{post.frontmatter.description}</p>
   </div>
 )
 
@@ -81,7 +78,6 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
-            summary
           }
           fields {
             slug
