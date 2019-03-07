@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHelmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
+import useDarkMode from 'hooks/useDarkMode'
 
 const query = graphql`
   query GetSiteMetadata {
@@ -28,7 +29,6 @@ const PageConfig = ({ title, description, path = `` }) => {
     file: { childImageSharp: { fluid: { src: image } } },
   } = useStaticQuery(query)
 
-
   const brandedTitle = title ? `${title} - ${meta.title}` : meta.title
   const metaDescription = description || meta.description
   const url = `${meta.siteUrl}${path}`
@@ -50,8 +50,12 @@ const PageConfig = ({ title, description, path = `` }) => {
           content: brandedTitle,
         },
         {
-          name: `og:description`,
+          property: `og:description`,
           content: description,
+        },
+        {
+          property: `og:image`,
+          content: image,
         },
         {
           name: `twitter:card`,
@@ -64,9 +68,6 @@ const PageConfig = ({ title, description, path = `` }) => {
         {
           name: `twitter:description`,
           content: metaDescription,
-        }, {
-          property: `og:image`,
-          content: image,
         },
         {
           name: `twitter:image`,
