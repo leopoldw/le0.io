@@ -12,7 +12,7 @@ const query = graphql`
         description
       }
     }
-    file(name: { eq: "title" }, extension: { eq: "png" }) {
+    file(name: { eq: "leouncropped" }, extension: { eq: "jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1000, quality: 100) {
           src

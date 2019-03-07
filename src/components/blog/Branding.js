@@ -43,7 +43,7 @@ const useAvatar = () => {
       file(name: { eq: "leo" }, extension: { eq: "png" }) {
         childImageSharp {
           id
-          fixed(width: 100, height: 100, quality: 75) {
+          fixed(width: 200, height: 200, quality: 75) {
             base64
             src
           }

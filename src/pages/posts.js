@@ -17,7 +17,7 @@ const styles = {
     textAlign: `center`,
     borderRadius: borderRadii.medium,
     '&:hover': {
-      borderColor: `black`,
+      borderColor: colors.darkBlue,
     },
   },
   previewContainerDark: {
@@ -28,6 +28,7 @@ const styles = {
     },
   },
   postHeader: {
+    color: colors.darkBlue,
     fontSize: fontSizes.heading,
     marginBottom: 40,
   },
@@ -36,12 +37,16 @@ const styles = {
       color: colors.yellow,
     },
   },
+  description: {
+    lineHeight: `1.1em`,
+    color: colors.darkGrey,
+  },
 }
 
 const PostPreview = ({ post, darkMode }) => (
   <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
     <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
-    <p>{post.frontmatter.description}</p>
+    <div css={styles.description}>{post.frontmatter.description}</div>
   </div>
 )
 
@@ -79,6 +84,7 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
+            description
           }
           fields {
             slug
