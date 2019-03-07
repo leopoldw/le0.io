@@ -30,7 +30,7 @@ const allImagesQuery = graphql`
             }
           }
           fluid(maxWidth: 1000) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

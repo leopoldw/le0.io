@@ -31,6 +31,7 @@ const PageConfig = ({ title, description, path = `` }) => {
   const brandedTitle = title ? `${title} - ${meta.title}` : meta.title
   const metaDescription = description || meta.description
   const url = `${meta.siteUrl}${path}`
+  const imageUrl = `${meta.siteUrl}${image}`
 
   return (
     <ReactHelmet
@@ -54,7 +55,7 @@ const PageConfig = ({ title, description, path = `` }) => {
         },
         {
           property: `og:image`,
-          content: image,
+          content: imageUrl,
         },
         {
           name: `twitter:card`,
@@ -70,7 +71,7 @@ const PageConfig = ({ title, description, path = `` }) => {
         },
         {
           name: `twitter:image`,
-          content: image,
+          content: imageUrl,
         },
       ]}
     />
