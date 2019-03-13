@@ -20,7 +20,7 @@ const MouseFollower = () => {
     })
 
     return () => {
-      document.removeEventListener(`mousemove`, mouseMoveListener)
+      document.removeEventListener(`mousemove`, mouseMoveListener, true)
     }
   }, [])
 
