@@ -38,6 +38,7 @@
     "gatsby-source-filesystem": "^2.0.20",
     "gatsby-transformer-sharp": "^2.1.13",
     "latlng-to-dms": "^1.0.2",
+    "logrocket": "^0.6.19",
     "prism-react-renderer": "^0.1.5",
     "prismjs": "^1.15.0",
     "prop-types": "^15.6.2",
