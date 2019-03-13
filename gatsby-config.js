@@ -7,12 +7,15 @@ if (isDev)
     path: `./.secrets`,
   })
 
+const NAME = `Leopold Wicht`
+
 module.exports = {
   siteMetadata: {
     title: `le0.io`,
-    author: `Leopold Wicht`,
+    author: NAME,
     siteUrl: `https://le0.io`,
-    description: `Front End JavaScript blog by Leopold Wicht`,
+    description: `Front-End blog by ${NAME}`,
+    profession: `Front-End JavaScript Engineer`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

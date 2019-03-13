@@ -37,7 +37,7 @@ const style = {
   },
 }
 
-const useAvatar = () => {
+const useStaticData = () => {
   const data = useStaticQuery(graphql`
     query AvatarQuery {
       file(name: { eq: "leo" }, extension: { eq: "png" }) {
@@ -49,22 +49,32 @@ const useAvatar = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          title
+          description
+        }
+      }
     }
   `)
 
-  return data.file.childImageSharp.fixed.src
+  return {
+    avatar: data.file.childImageSharp.fixed.src,
+    meta: data.site.siteMetadata,
+  }
 }
 
+
 const Branding = ({ smaller }) => {
-  const avatar = useAvatar()
+  const { avatar, meta } = useStaticData()
   const darkMode = useDarkMode()
 
   return (
     <Link to="/" css={style.link}>
       <div css={style.avatar} style={{ backgroundImage: `url(${avatar})` }} />
-      <div css={[style.text, darkMode && style.textDark, style.logo, smaller ? style.logoSmall : style.logoLarge]}>le0.io</div>
+      <div css={[style.text, darkMode && style.textDark, style.logo, smaller ? style.logoSmall : style.logoLarge]}>{meta.title}</div>
       { smaller &&
-        <div css={[style.text, darkMode && style.textDark, style.description]}>Front End blog by Leopold Wicht</div>
+        <div css={[style.text, darkMode && style.textDark, style.description]}>{meta.description}</div>
       }
     </Link>
   )

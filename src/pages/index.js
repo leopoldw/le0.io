@@ -100,18 +100,18 @@ const styles = {
   },
 }
 
-const IndexPage = () => (
+const IndexPage = ({ data: { site: { siteMetadata: meta } } }) => (
   <>
     <PageConfig themeColor={colors.darkBlue} />
     <div css={styles.container}>
       <div css={styles.headerPosition}>
         <div css={styles.headerWrapper}>
           <Guidelines>
-            <h1 css={styles.header}>Leopold Wicht</h1>
+            <h1 css={styles.header}>{meta.author}</h1>
           </Guidelines>
           <div>
             <Guidelines>
-              <div css={styles.subheader}>Front End Engineer</div>
+              <div css={styles.subheader}>{meta.profession}</div>
             </Guidelines>
           </div>
           <div css={styles.buttonContainer}>
@@ -142,5 +142,16 @@ const IndexPage = () => (
     <MouseFollower />
   </>
 )
+
+export const pageQuery = graphql`
+  query IndexQuery {
+    site {
+      siteMetadata {
+        author
+        profession
+      }
+    }
+  }
+`
 
 export default IndexPage
