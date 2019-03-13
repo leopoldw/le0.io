@@ -6,8 +6,8 @@ import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import Branding from 'components/blog/Branding'
 import mdxComponents from 'components/mdx'
 import { colors, animationSpeeds, fontSizes } from 'consts/design'
-import dateformat from 'dateformat'
 import ContentContainer from 'components/blog/ContentContainer'
+import PostMeta from 'components/site/PostMeta'
 import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
@@ -28,11 +28,6 @@ const styles = {
     marginBottom: 20,
     fontWeight: `600`,
     lineHeight: `1em`,
-  },
-  subheading: {
-    fontSize: fontSizes.subtext,
-    fontStyle: `italic`,
-    letterSpacing: `0.5px`,
   },
   articleBody: {
     lineHeight: `1.45em`,
@@ -69,7 +64,7 @@ const Post = ({
           <article css={[styles.article, darkMode && styles.articleDark]}>
             <header css={styles.articleHeader}>
               <h1 css={styles.heading}>{frontmatter.title}</h1>
-              <div css={styles.subheading}>{`${dateformat(new Date(frontmatter.date), `dS mmmm, yyyy`)} - ${timeToRead} min read`}</div>
+              <PostMeta timeToRead={timeToRead} date={frontmatter.date} />
             </header>
             <div css={styles.articleBody}>
               <PostContent body={code.body} />

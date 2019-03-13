@@ -4,6 +4,7 @@ import PageConfig from '../PageConfig'
 import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
+import PostMeta from 'components/site/PostMeta'
 import { colors, fontSizes, borderRadii } from 'consts/design'
 import useDarkMode from 'hooks/useDarkMode'
 
@@ -12,24 +13,29 @@ const styles = {
     paddingTop: 50,
   },
   previewContainer: {
-    border: `1px solid rgba(0, 0, 0, 0.2)`,
+    border: `3px solid rgba(0, 0, 0, 0.2)`,
     padding: 20,
     textAlign: `center`,
     borderRadius: borderRadii.medium,
+    color: colors.almostBlack,
     '&:hover': {
       borderColor: colors.darkBlue,
     },
   },
   previewContainerDark: {
     borderColor: colors.mediumYellow,
+    color: colors.mediumGrey,
     '&:hover': {
       borderColor: colors.yellow,
     },
   },
   postHeader: {
     color: colors.darkBlue,
-    fontSize: fontSizes.heading,
-    marginBottom: 40,
+    fontSize: fontSizes.previewHeading,
+    marginBottom: 20,
+  },
+  postMeta: {
+    marginBottom: 20,
   },
   postHeaderDark: {
     color: colors.almostWhite,
@@ -46,6 +52,9 @@ const styles = {
 const PostPreview = ({ post, darkMode }) => (
   <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
     <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
+    <div css={[styles.postMeta]}>
+      <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
+    </div>
     <div css={[styles.description, darkMode && styles.descriptionDark]}>{post.frontmatter.description}</div>
   </div>
 )
@@ -84,6 +93,7 @@ export const query = graphql`
           timeToRead
           frontmatter {
             title
+            date
             description
           }
           fields {

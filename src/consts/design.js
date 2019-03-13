@@ -23,6 +23,7 @@ const fontSizes = {
   smaller: `0.9em`,
   larger: `1.1em`,
   subheading: `1.25em`,
+  previewHeading: `1.75em`,
   heading: `2.2em`,
 }
 
