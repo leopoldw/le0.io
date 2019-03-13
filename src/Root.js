@@ -63,7 +63,7 @@ const styles = {
 
 const DarkModeContext = createContext()
 const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
 
   const toggleDarkMode = () => setDarkMode(!darkMode)
 
