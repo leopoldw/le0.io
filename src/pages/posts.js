@@ -21,7 +21,6 @@ const styles = {
     },
   },
   previewContainerDark: {
-    color: colors.almostWhite,
     borderColor: colors.mediumYellow,
     '&:hover': {
       borderColor: colors.yellow,
@@ -33,20 +32,21 @@ const styles = {
     marginBottom: 40,
   },
   postHeaderDark: {
-    '&:hover': {
-      color: colors.yellow,
-    },
+    color: colors.almostWhite,
   },
   description: {
     lineHeight: `1.1em`,
     color: colors.darkGrey,
+  },
+  descriptionDark: {
+    color: colors.mediumGrey,
   },
 }
 
 const PostPreview = ({ post, darkMode }) => (
   <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
     <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
-    <div css={styles.description}>{post.frontmatter.description}</div>
+    <div css={[styles.description, darkMode && styles.descriptionDark]}>{post.frontmatter.description}</div>
   </div>
 )
 
