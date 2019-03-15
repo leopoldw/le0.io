@@ -5,7 +5,7 @@ import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
 import PostMeta from 'components/site/PostMeta'
-import { colors, fontSizes, borderRadii } from 'consts/design'
+import { colors, fontSizes, borderRadii, mediaQueries } from 'consts/design'
 import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
@@ -15,11 +15,15 @@ const styles = {
   previewContainer: {
     border: `3px solid rgba(0, 0, 0, 0.2)`,
     padding: 20,
-    textAlign: `center`,
     borderRadius: borderRadii.medium,
     color: colors.almostBlack,
     '&:hover': {
       borderColor: colors.darkBlue,
+    },
+    [mediaQueries.mobile]: {
+      border: `none`,
+      padding: 0,
+      fontSize: fontSizes.smaller,
     },
   },
   previewContainerDark: {
@@ -27,22 +31,28 @@ const styles = {
     color: colors.mediumGrey,
     '&:hover': {
       borderColor: colors.yellow,
+      color: colors.yellow,
     },
   },
   postHeader: {
     color: colors.darkBlue,
     fontSize: fontSizes.previewHeading,
     marginBottom: 20,
+    fontWeight: 600,
   },
   postMeta: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   postHeaderDark: {
-    color: colors.almostWhite,
+    color: colors.yellow,
   },
   description: {
     lineHeight: `1.1em`,
     color: colors.darkGrey,
+    fontSize: fontSizes.smaller,
+    [mediaQueries.mobile]: {
+      display: `none`,
+    },
   },
   descriptionDark: {
     color: colors.mediumGrey,
@@ -51,10 +61,10 @@ const styles = {
 
 const PostPreview = ({ post, darkMode }) => (
   <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
-    <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
     <div css={[styles.postMeta]}>
       <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
     </div>
+    <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
     <div css={[styles.description, darkMode && styles.descriptionDark]}>{post.frontmatter.description}</div>
   </div>
 )
