@@ -1,20 +1,23 @@
 const colors = {
   darkBlue: `#00207f`,
   mediumBlue: `#00528b`,
+  mediumBlueTransparent: `rgba(0,82,139, 0.1)`,
   yellow: `#fff600`,
+  yellowTransparent: `rgba(255, 246, 0, 0.1)`,
   lightYellow: `#fff9ef`,
   mediumYellow: `#fff1d8`,
   almostBlack: `#1c1c1c`,
   almostWhite: `#fffbf3`,
   darkGrey: `#222222`,
   mediumGrey: `#c0c0c0`,
+  grey: `#7d7c7c`,
   standout: `rgba(255, 255, 255, 0.2)`,
   standoutSubtle: `rgba(255, 255, 255, 0.05)`,
 }
 
 const sizes = {
   contentMaxWidth: 800,
-paragraphSpacing: 40,
+  paragraphSpacing: 40,
 }
 
 // root is 20px

@@ -6,6 +6,7 @@ const dark = {
   bold: colors.yellow,
   standout: colors.standoutSubtle,
   border: colors.standout,
+  cardHover: `linear-gradient(135deg, ${colors.yellowTransparent}, transparent, ${colors.yellowTransparent})`,
   primaryText: colors.almostWhite,
   secondaryText: colors.mediumGrey,
 }
@@ -13,11 +14,12 @@ const dark = {
 const light = {
   dark: false,
   background: colors.lightYellow,
-  bold: colors.darkBlue,
+  bold: colors.mediumBlue,
   standout: colors.mediumYellow,
-  border: colors.darkGrey,
+  cardHover: `linear-gradient(135deg, ${colors.mediumBlueTransparent}, transparent, ${colors.mediumBlueTransparent})`,
+  border: colors.mediumGrey,
   primaryText: colors.almostBlack,
-  secondaryText: colors.almostBlack,
+  secondaryText: colors.grey,
 }
 
 export default { dark, light }

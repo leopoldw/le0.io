@@ -11,18 +11,21 @@ const styles = {
   pageContainer: {
     paddingTop: 50,
   },
-  previewContainer: ({ bold, border, secondaryText }) => ({
-    border: `3px solid ${border}`,
+  previewContainer: ({ bold, border, secondaryText, cardHover }) => ({
+    borderLeft: `5px solid ${border}`,
+    borderRight: `5px solid ${border}`,
     padding: 20,
-    borderRadius: borderRadii.medium,
     color: secondaryText,
     '&:hover': {
       color: bold,
       borderColor: bold,
+      background: cardHover,
     },
-    [mediaQueries.mobile]: {
+    [mediaQueries.tablet]: {
       border: `none`,
       padding: 0,
+    },
+    [mediaQueries.mobile]: {
       fontSize: fontSizes.smaller,
     },
   }),
@@ -37,7 +40,6 @@ const styles = {
   },
   description: ({ secondaryText }) => ({
     lineHeight: `1.1em`,
-    color: secondaryText,
     fontSize: fontSizes.smaller,
     [mediaQueries.mobile]: {
       display: `none`,
