@@ -1,7 +1,6 @@
 import React from 'react'
-import useDarkMode from 'hooks/useDarkMode'
 import { useStaticQuery, graphql, Link } from 'gatsby'
-import { colors, fontSizes, animationSpeeds } from 'consts/design'
+import { fontSizes, animationSpeeds } from 'consts/design'
 
 const style = {
   link: {
@@ -15,13 +14,10 @@ const style = {
     backgroundSize: `cover`,
     marginBottom: 10,
   },
-  text: {
-    color: colors.darkBlue,
+  text: ({ bold }) => ({
+    color: bold,
     transition: `color ${animationSpeeds.normal}ms linear`,
-  },
-  textDark: {
-    color: colors.yellow,
-  },
+  }),
   logo: {
     fontFamily: `Archery Black`,
   },
@@ -67,15 +63,16 @@ const useStaticData = () => {
 
 const Branding = ({ smaller }) => {
   const { avatar, meta } = useStaticData()
-  const darkMode = useDarkMode()
 
   return (
     <Link to="/" css={style.link}>
       <div css={style.avatar} style={{ backgroundImage: `url(${avatar})` }} />
-      <div css={[style.text, darkMode && style.textDark, style.logo, smaller ? style.logoSmall : style.logoLarge]}>{meta.title}</div>
-      { smaller &&
-        <div css={[style.text, darkMode && style.textDark, style.description]}>{meta.description}</div>
-      }
+      <span css={style.text}>
+        <div css={[style.logo, smaller ? style.logoSmall : style.logoLarge]}>{meta.title}</div>
+        {smaller &&
+          <div css={style.description}>{meta.description}</div>
+        }
+      </span>
     </Link>
   )
 }

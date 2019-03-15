@@ -1,23 +1,15 @@
 import React from 'react'
-import { sizes, colors } from 'consts/design'
-import useDarkMode from 'hooks/useDarkMode'
 
 const style = {
-  default: {
+  default: ({ border }) => ({
     margin: `10px 0`,
     border: 0,
-    borderBottom: `1px solid ${colors.mediumGrey}`,
-  },
-  dark: {
-    borderBottom: `1px solid ${colors.standout}`,
-  },
+    borderBottom: `1px solid ${border}`,
+  }),
 }
 
-const Hr = props => {
-  const darkMode = useDarkMode()
-  return (
-    <hr css={[style.default, darkMode && style.dark]} {...props} />
-  )
-}
+const Hr = props => (
+  <hr css={style.default} {...props} />
+)
 
 export default Hr

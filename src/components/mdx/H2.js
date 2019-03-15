@@ -1,8 +1,6 @@
 import React, { useRef } from 'react'
 import { fontSizes, colors, animationSpeeds } from 'consts/design'
 import LinkSVG from 'assets/link.svg'
-import useDarkMode from 'hooks/useDarkMode'
-
 
 const style = {
   header: {
@@ -19,23 +17,18 @@ const style = {
       visibility: `visible`,
     },
   },
-  link: {
+  link: ({ bold }) => ({
     position: `absolute`,
     left: -30,
     top: 1,
     paddingRight: 10,
+    color: bold,
     opacity: 0.8,
     ':hover': {
       opacity: 1,
     },
     transition: `color ${animationSpeeds.normal}ms linear`,
-  },
-  linkLight: {
-    color: colors.darkBlue,
-  },
-  linkDark: {
-    color: colors.yellow,
-  },
+  }),
 }
 
 // https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript
@@ -67,11 +60,10 @@ const useUniqueIdForChild = children => {
 
 const H2 = ({ children, ...rest }) => {
   const id = useUniqueIdForChild(children)
-  const darkMode = useDarkMode()
 
   return (
     <h2 css={style.header} id={id} name={id} {...rest}>
-      <a css={[style.link, darkMode ? style.linkDark : style.linkLight]} href={`#${id}`} aria-hidden>
+      <a css={style.link} href={`#${id}`} aria-hidden>
         <LinkSVG />
       </a>
       {children}

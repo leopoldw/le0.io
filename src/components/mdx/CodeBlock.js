@@ -1,13 +1,12 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
-import { sizes, borderRadii, colors } from 'consts/design'
+import { sizes, borderRadii } from 'consts/design'
 import theme from 'consts/prismTheme'
-import useDarkMode from 'hooks/useDarkMode'
 
 // mdx always inserts an empty token at the end it seems
 const css = {
-  container: {
-    border: `1px solid ${colors.darkGrey}`,
+  container: ({ border }) => ({
+    border: `1px solid ${border}`,
     marginTop: `0px`,
     marginBottom: sizes.paragraphSpacing,
     borderRadius: borderRadii.medium,
@@ -24,30 +23,24 @@ const css = {
     '& > div:last-child': {
       display: `none`,
     },
-  },
-  darkMode: {
-    border: `1px solid ${colors.standout}`,
-  },
+  }),
 }
 
 
-const CodeBlock = ({ className: lang = ``, children }) => {
-  const darkMode = useDarkMode()
-  return (
-    <Highlight {...defaultProps} theme={theme} code={children} language="jsx">
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style} css={[css.container, darkMode && css.darkMode]}>
-          {tokens.map((line, key1) => (
-            <div key={key1} {...getLineProps({ line, key: key1 })}>
-              {line.map((token, key2) => (
-                <span key={key2} {...getTokenProps({ token, key: key2 })} />
+const CodeBlock = ({ className: lang = ``, children }) => (
+  <Highlight {...defaultProps} theme={theme} code={children} language="jsx">
+    {({ className, style, tokens, getLineProps, getTokenProps }) => (
+      <pre className={className} style={style} css={css.container}>
+        {tokens.map((line, key1) => (
+          <div key={key1} {...getLineProps({ line, key: key1 })}>
+            {line.map((token, key2) => (
+              <span key={key2} {...getTokenProps({ token, key: key2 })} />
               ))}
-            </div>
+          </div>
           ))}
-        </pre>
+      </pre>
       )}
-    </Highlight>
-  )
-}
+  </Highlight>
+)
 
 export default CodeBlock

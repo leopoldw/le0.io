@@ -5,92 +5,74 @@ import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
 import PostMeta from 'components/site/PostMeta'
-import { colors, fontSizes, borderRadii, mediaQueries } from 'consts/design'
-import useDarkMode from 'hooks/useDarkMode'
+import { fontSizes, borderRadii, mediaQueries } from 'consts/design'
 
 const styles = {
   pageContainer: {
     paddingTop: 50,
   },
-  previewContainer: {
-    border: `3px solid rgba(0, 0, 0, 0.2)`,
+  previewContainer: ({ bold, border, secondaryText }) => ({
+    border: `3px solid ${border}`,
     padding: 20,
     borderRadius: borderRadii.medium,
-    color: colors.almostBlack,
+    color: secondaryText,
     '&:hover': {
-      borderColor: colors.darkBlue,
+      color: bold,
+      borderColor: bold,
     },
     [mediaQueries.mobile]: {
       border: `none`,
       padding: 0,
       fontSize: fontSizes.smaller,
     },
-  },
-  previewContainerDark: {
-    borderColor: colors.mediumYellow,
-    color: colors.mediumGrey,
-    '&:hover': {
-      borderColor: colors.yellow,
-      color: colors.yellow,
-    },
-  },
-  postHeader: {
-    color: colors.darkBlue,
+  }),
+  postHeader: ({ bold }) => ({
+    color: bold,
     fontSize: fontSizes.previewHeading,
     marginBottom: 20,
     fontWeight: 600,
-  },
+  }),
   postMeta: {
     marginBottom: 10,
   },
-  postHeaderDark: {
-    color: colors.yellow,
-  },
-  description: {
+  description: ({ secondaryText }) => ({
     lineHeight: `1.1em`,
-    color: colors.darkGrey,
+    color: secondaryText,
     fontSize: fontSizes.smaller,
     [mediaQueries.mobile]: {
       display: `none`,
     },
-  },
-  descriptionDark: {
-    color: colors.mediumGrey,
-  },
+  }),
 }
 
-const PostPreview = ({ post, darkMode }) => (
-  <div css={[styles.previewContainer, darkMode && styles.previewContainerDark]}>
+const PostPreview = ({ post }) => (
+  <div css={styles.previewContainer}>
     <div css={[styles.postMeta]}>
       <PostMeta date={post.frontmatter.date} timeToRead={post.timeToRead} />
     </div>
-    <h2 css={[styles.postHeader, darkMode && styles.postHeaderDark]}>{post.frontmatter.title}</h2>
-    <div css={[styles.description, darkMode && styles.descriptionDark]}>{post.frontmatter.description}</div>
+    <h2 css={styles.postHeader}>{post.frontmatter.title}</h2>
+    <div css={styles.description}>{post.frontmatter.description}</div>
   </div>
 )
 
 const Posts = ({
   data: { allMdx: { edges: posts } },
   location: { pathname },
-}) => {
-  const darkMode = useDarkMode()
-
-  return (
-    <ContentContainer header={<Branding />}>
-      <PageConfig
-        title="Posts"
-        path={pathname}
-      />
-      <main css={styles.pageContainer}>
-        {posts.map(({ node: post }) => (
-          <UnstyledLink to={post.fields.slug} key={post.id}>
-            <PostPreview post={post} darkMode={darkMode} />
-          </UnstyledLink>
+}) => (
+  <ContentContainer header={<Branding />}>
+    <PageConfig
+      title="Posts"
+      path={pathname}
+    />
+    <main css={styles.pageContainer}>
+      {posts.map(({ node: post }) => (
+        <UnstyledLink to={post.fields.slug} key={post.id}>
+          <PostPreview post={post} />
+        </UnstyledLink>
         ))}
-      </main>
-    </ContentContainer>
-  )
-}
+    </main>
+  </ContentContainer>
+)
 
 export default Posts
 

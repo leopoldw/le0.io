@@ -1,26 +1,18 @@
 import React from 'react'
-import { colors, animationSpeeds } from 'consts/design'
-import useDarkMode from 'hooks/useDarkMode'
+import { animationSpeeds } from 'consts/design'
 
 const style = {
-  default: {
-    color: colors.darkBlue,
+  default: ({ bold }) => ({
+    color: bold,
     transition: `color ${animationSpeeds.normal}ms linear`,
     '&:hover': {
       textDecoration: `none`,
     },
-  },
-  darkMode: {
-    color: colors.yellow,
-  },
+  }),
 }
 
-const A = props => {
-  const darkMode = useDarkMode()
-
-  return (
-    <a css={[style.default, darkMode && style.darkMode]} target="_blank" rel="noopener" {...props} />
-  )
-}
+const A = props => (
+  <a css={style.default} target="_blank" rel="noopener" {...props} />
+)
 
 export default A

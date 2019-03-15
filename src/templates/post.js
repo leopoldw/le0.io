@@ -5,21 +5,17 @@ import { MDXProvider } from '@mdx-js/tag'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import Branding from 'components/blog/Branding'
 import mdxComponents from 'components/mdx'
-import { colors, animationSpeeds, fontSizes } from 'consts/design'
+import { animationSpeeds, fontSizes } from 'consts/design'
 import ContentContainer from 'components/blog/ContentContainer'
 import PostMeta from 'components/site/PostMeta'
-import useDarkMode from 'hooks/useDarkMode'
 
 const styles = {
-  article: {
+  article: ({ primaryText }) => ({
     transition: `color ${animationSpeeds.normal}ms linear`,
     paddingTop: 100,
     marginBottom: 100,
-    color: colors.almostBlack,
-  },
-  articleDark: {
-    color: colors.almostWhite,
-  },
+    color: primaryText,
+  }),
   articleHeader: {
     marginBottom: 50,
   },
@@ -49,35 +45,31 @@ const PostContent = memo(({ body }) => (
 const Post = ({
   data: { mdx: { timeToRead, frontmatter, code } },
   location: { pathname },
-}) => {
-  const darkMode = useDarkMode()
-
-  return (
-    <>
-      <PageConfig
-        title={frontmatter.title}
-        description={frontmatter.description}
-        path={pathname}
-      />
-      <ContentContainer header={<Branding />}>
-        <main>
-          <article css={[styles.article, darkMode && styles.articleDark]}>
-            <header css={styles.articleHeader}>
-              <h1 css={styles.heading}>{frontmatter.title}</h1>
-              <PostMeta timeToRead={timeToRead} date={frontmatter.date} />
-            </header>
-            <div css={styles.articleBody}>
-              <PostContent body={code.body} />
-            </div>
-          </article>
-        </main>
-        <footer>
-          <Branding smaller />
-        </footer>
-      </ContentContainer>
-    </>
-  )
-}
+}) => (
+  <>
+    <PageConfig
+      title={frontmatter.title}
+      description={frontmatter.description}
+      path={pathname}
+    />
+    <ContentContainer header={<Branding />}>
+      <main>
+        <article css={styles.article}>
+          <header css={styles.articleHeader}>
+            <h1 css={styles.heading}>{frontmatter.title}</h1>
+            <PostMeta timeToRead={timeToRead} date={frontmatter.date} />
+          </header>
+          <div css={styles.articleBody}>
+            <PostContent body={code.body} />
+          </div>
+        </article>
+      </main>
+      <footer>
+        <Branding smaller />
+      </footer>
+    </ContentContainer>
+  </>
+)
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {

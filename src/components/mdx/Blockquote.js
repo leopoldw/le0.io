@@ -1,12 +1,11 @@
 import React from 'react'
-import { colors, sizes, borderRadii, animationSpeeds } from 'consts/design'
-import useDarkMode from 'hooks/useDarkMode'
+import { sizes, borderRadii, animationSpeeds } from 'consts/design'
 
 const styles = {
-  container: {
+  container: ({ standout }) => ({
     position: `relative`,
     fontStyle: `italic`,
-    background: colors.almostWhite,
+    background: standout,
     borderRadius: borderRadii.small,
     padding: 15,
     marginBottom: sizes.paragraphSpacing,
@@ -14,34 +13,24 @@ const styles = {
     '& p:last-child': {
       marginBottom: 0,
     },
-  },
-  bookmark: {
+  }),
+  bookmark: ({ bold }) => ({
     transition: `background ${animationSpeeds.normal}ms linear`,
     width: 6,
     height: `100%`,
-    background: colors.darkBlue,
+    background: bold,
     position: `absolute`,
     top: 0,
     left: -10,
     borderRadius: borderRadii.small,
-  },
-  containerDark: {
-    background: colors.standoutSubtle,
-  },
-  bookmarkDark: {
-    background: colors.yellow,
-  },
+  }),
 }
 
-const Blockquote = ({ children }) => {
-  const darkMode = useDarkMode()
-
-  return (
-    <div css={[styles.container, darkMode && styles.containerDark]}>
-      <div css={[styles.bookmark, darkMode && styles.bookmarkDark]} />
-      {children}
-    </div>
-  )
-}
+const Blockquote = ({ children }) => (
+  <div css={styles.container}>
+    <div css={styles.bookmark} />
+    {children}
+  </div>
+)
 
 export default Blockquote

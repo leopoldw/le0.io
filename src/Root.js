@@ -1,24 +1,29 @@
-import React, { createContext, useState } from 'react'
+import React, { memo, useState } from 'react'
 import emotionReset from 'emotion-reset'
 import { Global } from '@emotion/core'
 import { animationSpeeds, colors } from 'consts/design'
+import { ThemeProvider } from 'emotion-theming'
+import themes from 'consts/themes'
 import MoonSVG from 'assets/moon.svg'
 import SunSVG from 'assets/sun.svg'
 
 const styles = {
-  global: {
+  global: ({ background }) => ({
+    'html, body': {
+      background,
+    },
     'html, body, #___gatsby, #___gatsby > div': {
       width: `100%`,
       height: `100%`,
       transition: `background ${animationSpeeds.normal}ms linear`,
     },
     body: {
-      fontFamily: `"Exo 2", Arial, Helvetica, sans-serif`,
-      fontWeight: `300`,
+      fontFamily: `"Exo 2", Helvetica, Arial, sans-serif`,
+      fontWeight: 300,
       fontSize: 20,
       textRendering: `optimizeLegibility`,
     },
-  },
+  }),
   root: {
     width: `100%`,
     height: `100%`,
@@ -61,7 +66,6 @@ const styles = {
   },
 }
 
-const DarkModeContext = createContext()
 const useDarkMode = () => {
   const [darkMode, setDarkMode] = useState(true)
 
@@ -75,13 +79,13 @@ const useDarkMode = () => {
 
 const Root = ({ children, location }) => {
   const { darkMode, toggleDarkMode } = useDarkMode()
+  const theme = darkMode ? themes.dark : themes.light
 
   return (
-    <DarkModeContext.Provider value={{ darkMode }}>
+    <ThemeProvider theme={theme}>
       <div css={styles.root}>
         <Global styles={emotionReset} />
-        <Global styles={styles.global} />
-        <Global styles={{ 'html, body': { background: darkMode ? colors.darkGrey : colors.lightYellow } }} />
+        <Global styles={styles.global(theme)} />
 
         {children}
 
@@ -94,9 +98,8 @@ const Root = ({ children, location }) => {
           </div>
         )}
       </div>
-    </DarkModeContext.Provider>
+    </ThemeProvider>
   )
 }
 
 export default Root
-export { DarkModeContext }

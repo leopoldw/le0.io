@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactHelmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
-import useDarkMode from 'hooks/useDarkMode'
 import { colors } from 'consts/design'
 
 const query = graphql`
@@ -77,9 +76,7 @@ const PageConfig = ({ title, description, themeColor, path = `` }) => {
         },
         {
           name: `theme-color`,
-          content: themeColor
-            ? themeColor
-            : useDarkMode ? colors.darkGrey : colors.mediumYellow,
+          content: colors.mediumYellow,
         },
       ]}
     />
