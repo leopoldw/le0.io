@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors, fontSizes, sizes, borderRadii, animationSpeeds } from 'consts/design'
+import { fontSizes, sizes, borderRadii, animationSpeeds } from 'consts/design'
 import RightChevron from 'assets/chevrons-right.svg'
 
 const style = {

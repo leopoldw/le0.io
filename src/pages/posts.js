@@ -5,7 +5,7 @@ import ContentContainer from 'components/blog/ContentContainer'
 import UnstyledLink from 'components/site/UnstyledLink'
 import Branding from 'components/blog/Branding'
 import PostMeta from 'components/site/PostMeta'
-import { fontSizes, borderRadii, mediaQueries } from 'consts/design'
+import { fontSizes, mediaQueries } from 'consts/design'
 
 const styles = {
   pageContainer: {
@@ -17,13 +17,16 @@ const styles = {
     padding: 20,
     color: secondaryText,
     '&:hover': {
-      color: bold,
+      opacity: 1,
       borderColor: bold,
       background: cardHover,
     },
     [mediaQueries.tablet]: {
       border: `none`,
       padding: 0,
+      '&:hover': {
+        background: `transparent`,
+      },
     },
     [mediaQueries.mobile]: {
       fontSize: fontSizes.smaller,

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { fontSizes, colors, animationSpeeds } from 'consts/design'
+import { fontSizes, animationSpeeds } from 'consts/design'
 import LinkSVG from 'assets/link.svg'
 
 const style = {

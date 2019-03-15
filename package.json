@@ -55,7 +55,8 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "rm -rf .cache && gatsby develop",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "lint": "eslint -c .eslintrc src gatsby-*.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { useState } from 'react'
 import emotionReset from 'emotion-reset'
 import { Global } from '@emotion/core'
 import { animationSpeeds, colors } from 'consts/design'
