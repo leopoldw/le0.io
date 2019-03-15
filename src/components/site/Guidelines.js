@@ -12,10 +12,14 @@ const styles = {
     left: 0,
     position: `absolute`,
     padding: 3,
-    opacity: 0.6,
-    // TODO: design?
+    opacity: 0.8,
     fontSize: 12,
     transform: `translateY(-100%)`,
+  },
+  infoBottom: {
+    top: `auto`,
+    bottom: 0,
+    transform: `translateY(100%)`,
   },
   hover: {
     backgroundColor: `white`,
@@ -46,6 +50,7 @@ const styles = {
 
 // 2 fast 2 furious
 const FLUID_QUERY_INTERVAL = 50
+const INFO_CLIP_THRESHOLD = 30
 
 const getPositionsFromRect = rect =>
   rect
@@ -56,6 +61,7 @@ const getPositionsFromRect = rect =>
         bottom: Math.round(rect.y + rect.height),
         width: Math.round(rect.width),
         height: Math.round(rect.height),
+        infoOnBottom: rect.y < INFO_CLIP_THRESHOLD,
       })
     : false
 
@@ -109,7 +115,7 @@ const Guidelines = ({ children, disabled, fluid }) => {
     >
       {(hasHover && positions) && (
         <>
-          <div css={styles.info}>{`${Math.round(positions.width)} x ${Math.round(positions.height)}`}</div>
+          <div css={[styles.info, positions.infoOnBottom && styles.infoBottom]}>{`${Math.round(positions.width)} x ${Math.round(positions.height)}`}</div>
           <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${positions.left}px` }} />
           <div css={[styles.dottedLine, styles.vertical]} style={{ left: `${positions.right}px` }} />
           <div css={[styles.dottedLine, styles.horizontal]} style={{ top: `${positions.top}px` }} />
