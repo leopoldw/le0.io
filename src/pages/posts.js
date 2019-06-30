@@ -71,7 +71,7 @@ const Posts = ({
     />
     <main css={styles.pageContainer}>
       {posts.map(({ node: post }) => (
-        <UnstyledLink to={post.fields.slug} key={post.id}>
+        <UnstyledLink to={post.fields.path} key={post.id}>
           <PostPreview post={post} />
         </UnstyledLink>
         ))}
@@ -94,7 +94,7 @@ export const query = graphql`
             description
           }
           fields {
-            slug
+            path
           }
         }
       }

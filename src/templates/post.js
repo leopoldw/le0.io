@@ -55,7 +55,7 @@ const PostContent = memo(({ body }) => (
 ))
 
 const Post = ({
-  data: { mdx: { timeToRead, frontmatter, code } },
+  data: { mdx: { timeToRead, frontmatter, code, fields } },
   location: { pathname },
 }) => (
   <>
@@ -83,7 +83,7 @@ const Post = ({
         <div css={styles.footerMetaContainer}>
           <Aside header="Spot an issue or want to discuss things further?">
             {`Open a pull request or leave a code comment on `}
-            <A href={`https://github.com/leopoldw/le0.io/tree/master/posts/${``}`}>Github</A>.
+            <A href={`https://github.com/leopoldw/le0.io/edit/master/posts/${fields.slug}/index.mdx`}>Github</A>.
           </Aside>
         </div>
       </footer>
@@ -103,6 +103,10 @@ export const pageQuery = graphql`
       }
       code {
         body
+      }
+      fields {
+        slug
+        path
       }
     }
   }

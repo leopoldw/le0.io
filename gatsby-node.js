@@ -9,8 +9,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     actions.createNodeField({
       node,
-      name: `slug`,
+      name: `path`,
       value: `/posts/${slug}`,
+    })
+
+    actions.createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
     })
   }
 
@@ -36,7 +42,7 @@ exports.createPages = ({ graphql, actions }) =>
             node {
               id
               fields {
-                slug
+                path
               }
             }
           }
@@ -48,7 +54,7 @@ exports.createPages = ({ graphql, actions }) =>
 
         data.allMdx.edges.forEach(({ node }) => {
           actions.createPage({
-            path: node.fields.slug,
+            path: node.fields.path,
             component: path.resolve(`./src/templates/post.js`),
           })
         })
