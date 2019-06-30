@@ -274,7 +274,7 @@ Handlers have historically been a bit tricky to deal with in React, since they o
 
 ```jsx
 // bound function
-onClick={setName.bind(name)}
+onClick={setName.bind(this, name)}
 
 // anonymous function
 onClick={() => setName(name)}
