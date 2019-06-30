@@ -26,12 +26,14 @@ const useWindowStats = () => {
   })
 
   useLayoutEffect(() => {
-    const resizeWatcher = window.addEventListener(`resize`, () => {
+    const setStats = () => {
       setWindowStats({
         ...windowStats,
         ...getResolution(),
       })
-    })
+    }
+
+    window.addEventListener(`resize`, setStats)
 
     const interval = setInterval(() => {
       setWindowStats({
@@ -41,7 +43,7 @@ const useWindowStats = () => {
     }, 1000)
 
     return () => {
-      window.removeEventListener(`resize`, resizeWatcher)
+      window.removeEventListener(`resize`, setStats)
       clearInterval(interval)
     }
   }, [])
