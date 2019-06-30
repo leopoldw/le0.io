@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { graphql } from 'gatsby'
 import PageConfig from '../PageConfig'
-import { MDXProvider } from '@mdx-js/tag'
+import { MDXProvider } from '@mdx-js/react'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import Branding from 'components/blog/Branding'
 import mdxComponents from 'components/mdx'

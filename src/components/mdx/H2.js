@@ -20,6 +20,7 @@ const style = {
   link: ({ bold }) => ({
     position: `absolute`,
     left: -30,
+    transform: `scale(1.2)`,
     top: 1,
     paddingRight: 10,
     color: bold,

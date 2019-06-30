@@ -15,12 +15,14 @@ const MouseFollower = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    const mouseMoveListener = document.addEventListener(`mousemove`, ({ clientX: x, clientY: y }) => {
+    const onMouseMove = ({ clientX: x, clientY: y }) => {
       setMousePosition({ x, y })
-    })
+    }
+
+    document.addEventListener(`mousemove`, onMouseMove)
 
     return () => {
-      document.removeEventListener(`mousemove`, mouseMoveListener, true)
+      document.removeEventListener(`mousemove`, onMouseMove)
     }
   }, [])
 
