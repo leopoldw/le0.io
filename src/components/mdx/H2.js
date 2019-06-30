@@ -7,8 +7,8 @@ const style = {
     fontSize: fontSizes.subheading,
     fontWeight: `600`,
     lineHeight: `1em`,
-    paddingBottom: 20,
-    paddingTop: 40,
+    marginBottom: 20,
+    marginTop: 40,
     position: `relative`,
     '& a': {
       visibility: `hidden`,
