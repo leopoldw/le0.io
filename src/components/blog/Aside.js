@@ -6,10 +6,12 @@ const style = {
   container: theme => ({
     fontSize: fontSizes.subtext,
     marginBottom: sizes.paragraphSpacing,
+    color: theme.primaryText,
     background: theme.standout,
     fontStyle: `italic`,
     padding: 10,
     paddingLeft: 40,
+    lineHeight: `2em`,
     borderRadius: borderRadii.medium,
     position: `relative`,
     transition: `background ${animationSpeeds.normal}ms linear`,

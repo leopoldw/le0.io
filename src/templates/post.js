@@ -8,6 +8,8 @@ import mdxComponents from 'components/mdx'
 import { animationSpeeds, fontSizes } from 'consts/design'
 import ContentContainer from 'components/blog/ContentContainer'
 import PostMeta from 'components/site/PostMeta'
+import Aside from 'components/blog/Aside'
+import A from 'components/mdx/A'
 
 const styles = {
   article: ({ primaryText }) => ({
@@ -28,6 +30,16 @@ const styles = {
   articleBody: {
     lineHeight: `1.45em`,
     letterSpacing: `1px`,
+  },
+  footer: {
+    display: `flex`,
+  },
+  footerBrandingContainer: {
+    flexBasis: `40%`,
+  },
+  footerMetaContainer: {
+    flexBasis: `60%`,
+    textAlign: `right`,
   },
 }
 
@@ -64,8 +76,16 @@ const Post = ({
           </div>
         </article>
       </main>
-      <footer>
-        <Branding smaller />
+      <footer css={styles.footer}>
+        <div css={styles.footerBrandingContainer}>
+          <Branding smaller />
+        </div>
+        <div css={styles.footerMetaContainer}>
+          <Aside header="Spot an issue or want to discuss things further?">
+            {`Open a pull request or leave a code comment on `}
+            <A href={`https://github.com/leopoldw/le0.io/tree/master/posts/${``}`}>Github</A>.
+          </Aside>
+        </div>
       </footer>
     </ContentContainer>
   </>
