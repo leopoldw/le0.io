@@ -1,5 +1,5 @@
 const path = require(`path`)
-const mdxFeed = require(`gatsby-mdx/feed`)
+const mdxFeed = require(`gatsby-plugin-mdx/feed`)
 const isDev = process.env.NODE_ENV === `development`
 
 if (isDev)
@@ -27,7 +27,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     // `gatsby-plugin-offline`, // serves broken site from cache
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-mdx`,
     },
     {
       resolve: `gatsby-plugin-sharp`,

@@ -22,9 +22,9 @@ const useIPStats = () => {
         .then(({ ip, language, geo }) => {
           setIPStats({
             ...(ip ? getStatObject(`ip`, `IP Address`, ip, true) : {}),
-            ...(geo ? getStatObject(`location`, `Location`, `${geo.country_capital}, ${geo.state_prov}, ${geo.country_name}`, true) : {}),
+            ...(geo?.country_capital ? getStatObject(`location`, `Location`, `${geo.country_capital}, ${geo.state_prov}, ${geo.country_name}`, true) : {}),
             ...(geo?.isp ? getStatObject(`isp`, `ISP`, geo.isp, geo.isp) : {}),
-            ...(geo.latitude ? getStatObject(`gps`, `GPS (approx)`, langlong(`${geo.latitude}, ${geo.longitude}`).replace(`N`, `N,`), true) : {}),
+            ...(geo?.latitude ? getStatObject(`gps`, `GPS (approx)`, langlong(`${geo.latitude}, ${geo.longitude}`).replace(`N`, `N,`), true) : {}),
           })
         })
     } catch (e) {

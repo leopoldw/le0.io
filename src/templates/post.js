@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { graphql } from 'gatsby'
 import PageConfig from '../PageConfig'
 import { MDXProvider } from '@mdx-js/react'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import Branding from 'components/blog/Branding'
 import mdxComponents from 'components/mdx'
 import { animationSpeeds, fontSizes } from 'consts/design'
@@ -55,7 +55,7 @@ const PostContent = memo(({ body }) => (
 ))
 
 const Post = ({
-  data: { mdx: { timeToRead, frontmatter, code, fields } },
+  data: { mdx: { timeToRead, frontmatter, body, fields } },
   location: { pathname },
 }) => (
   <>
@@ -72,7 +72,7 @@ const Post = ({
             <PostMeta timeToRead={timeToRead} date={frontmatter.date} />
           </header>
           <div css={styles.articleBody}>
-            <PostContent body={code.body} />
+            <PostContent body={body} />
           </div>
         </article>
       </main>
@@ -101,9 +101,7 @@ export const pageQuery = graphql`
         date
         description
       }
-      code {
-        body
-      }
+      body
       fields {
         slug
         path
