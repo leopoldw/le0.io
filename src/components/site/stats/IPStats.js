@@ -21,10 +21,10 @@ const useIPStats = () => {
       requestIPInfo()
         .then(({ ip, language, geo }) => {
           setIPStats({
-            ...getStatObject(`ip`, `IP Address`, ip, true),
-            ...getStatObject(`location`, `Location`, `${geo.country_capital}, ${geo.state_prov}, ${geo.country_name}`, true),
-            ...getStatObject(`isp`, `ISP`, geo.isp, geo.isp),
-            ...getStatObject(`gps`, `GPS (approx)`, langlong(`${geo.latitude}, ${geo.longitude}`).replace(`N`, `N,`), true),
+            ...(ip ? getStatObject(`ip`, `IP Address`, ip, true) : {}),
+            ...(geo ? getStatObject(`location`, `Location`, `${geo.country_capital}, ${geo.state_prov}, ${geo.country_name}`, true) : {}),
+            ...(geo?.isp ? getStatObject(`isp`, `ISP`, geo.isp, geo.isp) : {}),
+            ...(geo.latitude ? getStatObject(`gps`, `GPS (approx)`, langlong(`${geo.latitude}, ${geo.longitude}`).replace(`N`, `N,`), true) : {}),
           })
         })
     } catch (e) {

@@ -58,12 +58,5 @@
     "dev": "rm -rf .cache && gatsby develop",
     "serve": "gatsby serve",
     "lint": "eslint -c .eslintrc src gatsby-*.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }

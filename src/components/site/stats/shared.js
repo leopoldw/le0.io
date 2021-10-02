@@ -4,7 +4,7 @@ const getStatObject = (statKey, statName, statValue, condition, fluid = false) =
     typeof condition === `number` ||
     condition === true
   )
-    ? { [statKey]: [statName, statValue, fluid] }
+    ? { [statKey]: [statName, `${statValue}`.replace(/undefined/g, ``), fluid] }
     : {}
 
 const convertObjectToOrderedArray = (object, order) =>

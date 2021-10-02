@@ -115,7 +115,6 @@ const IndexPage = ({ data: { site: { siteMetadata: meta } } }) => (
             </Guidelines>
           </div>
           <div css={styles.buttonContainer}>
-            <Button to="/posts">See All Posts</Button>
             <Button href="https://www.linkedin.com/in/leowicht/">LinkedIn</Button>
             {/* <Button to="/posts">Contact</Button> */}
             {/* TODO: add contact  */}
